@@ -1,0 +1,12 @@
+Game created by:
+    Romain MARCOT - UI / UX designer
+    Gauthier MALFILATRE - Lead director & Graphics engine director
+    Ethan BERTIN PREVOT - R&D & Co-Scenarist
+
+Graphics engine:
+    CSFML
+    Ray4 engine
+
+2025 REGULUS Studio
+
+Press ECHAP to quit
