@@ -8,7 +8,7 @@
 #include "scenes.h"
 #include "setting.h"
 
-int setting_init(wolf_context_t *window)
+int setting_init(bst_context_t *window)
 {
     window->setting = malloc(sizeof(setting_t));
     if (!window->setting)
@@ -23,13 +23,13 @@ int setting_init(wolf_context_t *window)
     return OK;
 }
 
-void setting_update(wolf_context_t *window)
+void setting_update(bst_context_t *window)
 {
     slider_fonctions_setting(window);
     button_fonctions_setting(window);
 }
 
-void setting_event(wolf_context_t *window)
+void setting_event(bst_context_t *window)
 {
     if (window->evt.type == sfEvtClosed) {
         sfRenderWindow_close(window->view->window);
@@ -43,7 +43,7 @@ void setting_event(wolf_context_t *window)
     setting_handle_mouse(window);
 }
 
-void setting_draw(wolf_context_t *window)
+void setting_draw(bst_context_t *window)
 {
     if (window->setting->states.shader)
         setup_shader(window);
@@ -57,7 +57,7 @@ void setting_draw(wolf_context_t *window)
     draw_sliders_setting(window);
 }
 
-void setting_destroy(wolf_context_t *window)
+void setting_destroy(bst_context_t *window)
 {
     if (!window->setting)
         return;

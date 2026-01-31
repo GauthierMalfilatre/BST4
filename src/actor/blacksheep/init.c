@@ -7,7 +7,7 @@
 */
 #include "wolf.h"
 
-blacksheep_t *create_blacksheep(wolf_context_t *context)
+blacksheep_t *create_blacksheep(bst_context_t *context)
 {
     blacksheep_t *bs;
 
@@ -31,10 +31,14 @@ blacksheep_t *create_blacksheep(wolf_context_t *context)
     return bs;
 }
 
-int spawn_blacksheep(wolf_context_t *context)
+int spawn_blacksheep(bst_context_t *context)
 {
     spawns_t *spawn = find_spawn_point(context->cmap->spawns, ATK);
 
+    if (!spawn) {
+        printf("Cannot spawn blacksheep\n");
+        return ERROR;
+    }
     context->bs->pos.x = spawn->a.x + rand() % (int)(spawn->b.x - spawn->a.x);
     context->bs->pos.y = spawn->a.y + rand() % (int)(spawn->b.y - spawn->a.y);
     context->bs->diffusing = 0;

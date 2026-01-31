@@ -11,7 +11,7 @@ static const point_parse_t tab[1] = {
     {"texture", &check_if_texture_exists},
 };
 
-static int find(char **warray, wolf_context_t *context, int *error)
+static int find(char **warray, bst_context_t *context, int *error)
 {
     for (int i = 0; i < 1; i++) {
         if (!my_lstrcmp(warray[0], tab[i].command)) {
@@ -21,7 +21,7 @@ static int find(char **warray, wolf_context_t *context, int *error)
     return 1;
 }
 
-int builtin_require(char **warray, wolf_context_t *context)
+int builtin_require(char **warray, bst_context_t *context)
 {
     int error = 0;
 

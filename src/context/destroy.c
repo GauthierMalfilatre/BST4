@@ -8,7 +8,7 @@
 #include "sound.h"
 #include "scenes.h"
 
-void destroy_context(wolf_context_t *context)
+void destroy_context(bst_context_t *context)
 {
     if (!context)
         return;

@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-static void add_the_wall(wolf_context_t *context, player_t *self)
+static void add_the_wall(bst_context_t *context, player_t *self)
 {
     float length = 200;
 
@@ -28,7 +28,7 @@ static void add_the_wall(wolf_context_t *context, player_t *self)
         .type = 653, .is_breakable = 50, .builder = self};
 }
 
-int skill_wall(wolf_context_t *context, player_t *self)
+int skill_wall(bst_context_t *context, player_t *self)
 {
     if (self->cooldowns.till_competence <= 0.f) {
         self->is_endskill_used = 0;
@@ -39,7 +39,7 @@ int skill_wall(wolf_context_t *context, player_t *self)
     return OK;
 }
 
-static void remove_destructible_walls(wolf_context_t *context, player_t *self)
+static void remove_destructible_walls(bst_context_t *context, player_t *self)
 {
     for (int i = 0; i < context->cmap->n_wall; i++) {
         if (context->cmap->walls[i].is_breakable != 0.f &&
@@ -51,7 +51,7 @@ static void remove_destructible_walls(wolf_context_t *context, player_t *self)
     }
 }
 
-int skill_wall_end(wolf_context_t *context, player_t *self, sfBool force)
+int skill_wall_end(bst_context_t *context, player_t *self, sfBool force)
 {
     if (force || (self->cooldowns.till_competence <= 30000.f && self->
         cooldowns.till_competence > 0.f && !self->is_endskill_used)) {

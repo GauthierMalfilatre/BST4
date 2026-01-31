@@ -33,7 +33,7 @@ static int is_collision_with_player(player_t *player, bullet_t *bullet,
     return (t12.x >= 0 && t12.x <= 1) || (t12.y >= 0 && t12.y <= 1);
 }
 
-static int wall_callision(wolf_context_t *context, sfVector2f base,
+static int wall_callision(bst_context_t *context, sfVector2f base,
     sfVector2f target, int dmg)
 {
     sfVector2f inter = {NAN, NAN};
@@ -47,7 +47,7 @@ static int wall_callision(wolf_context_t *context, sfVector2f base,
     return OK;
 }
 
-static void update_single_bullet(wolf_context_t *context, bullet_t *bullet)
+static void update_single_bullet(bst_context_t *context, bullet_t *bullet)
 {
     float delt_t = sfTime_asMicroseconds(sfClock_restart(bullet->clock)) / 200;
 
@@ -72,7 +72,7 @@ static void update_single_bullet(wolf_context_t *context, bullet_t *bullet)
     bullet->pos.y += bullet->dir.y * delt_t;
 }
 
-void udpdate_bullets(wolf_context_t *context)
+void udpdate_bullets(bst_context_t *context)
 {
     bullet_t *temp = context->cmap->bullets;
     bullet_t *next = NULL;

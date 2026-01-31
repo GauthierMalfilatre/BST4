@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-int hill_scene_timer(wolf_context_t *context)
+int hill_scene_timer(bst_context_t *context)
 {
     if (!context) {
         return ERROR;

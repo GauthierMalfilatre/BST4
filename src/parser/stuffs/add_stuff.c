@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-int add_stuff_p(char **warray, wolf_context_t *context)
+int add_stuff_p(char **warray, bst_context_t *context)
 {
     maps_t *map = 0;
 

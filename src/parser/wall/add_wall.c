@@ -17,7 +17,7 @@ int add_wall(wall_t wall, maps_t *map)
     return OK;
 }
 
-int add_wall_p(char **warray, wolf_context_t *context)
+int add_wall_p(char **warray, bst_context_t *context)
 {
     if (my_len_word_array(warray) < 6 || context->n_map < 1) {
         return ERROR;

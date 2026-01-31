@@ -41,6 +41,7 @@ typedef struct maps_s maps_t;
 typedef enum mode_e {
     BS_GO,
     HILL,
+    RANKED,
 } modee_t;
 
 typedef struct bst_s {
@@ -141,57 +142,63 @@ typedef struct wolf_context_s {
     render_manager_t *render_manager;
     sfVector2i wins;
     int team_winner;
-} wolf_context_t;
+} bst_context_t;
 
-int create_context(wolf_context_t **context, const char *config_file);
-void destroy_context(wolf_context_t *context);
-void change_scene(int new_scene, wolf_context_t *window);
-void change_resolution(wolf_context_t *window, unsigned int width,
+int create_context(bst_context_t **context, const char *config_file);
+void destroy_context(bst_context_t *context);
+void change_scene(int new_scene, bst_context_t *window);
+void change_resolution(bst_context_t *window, unsigned int width,
     unsigned int height);
 
-char load_settings(wolf_context_t *context);
+char load_settings(bst_context_t *context);
 
-int menu_init(wolf_context_t *window);
-void menu_update(wolf_context_t *window);
-void menu_event(wolf_context_t *window);
-void menu_draw(wolf_context_t *window);
-void menu_destroy(wolf_context_t *window);
+int menu_init(bst_context_t *window);
+void menu_update(bst_context_t *window);
+void menu_event(bst_context_t *window);
+void menu_draw(bst_context_t *window);
+void menu_destroy(bst_context_t *window);
 
-int setting_init(wolf_context_t *window);
-void setting_update(wolf_context_t *window);
-void setting_event(wolf_context_t *window);
-void setting_draw(wolf_context_t *window);
-void setting_destroy(wolf_context_t *window);
+int setting_init(bst_context_t *window);
+void setting_update(bst_context_t *window);
+void setting_event(bst_context_t *window);
+void setting_draw(bst_context_t *window);
+void setting_destroy(bst_context_t *window);
 
 //Credit management
-int credit_init(wolf_context_t *window);
-void credit_update(wolf_context_t *window);
-void credit_event(wolf_context_t *window);
-void credit_draw(wolf_context_t *window);
-void credit_destroy(wolf_context_t *window);
+int credit_init(bst_context_t *window);
+void credit_update(bst_context_t *window);
+void credit_event(bst_context_t *window);
+void credit_draw(bst_context_t *window);
+void credit_destroy(bst_context_t *window);
 
-int bst_init(wolf_context_t *context);
-void bst_update(wolf_context_t *context);
-void bst_event(wolf_context_t *context);
-void bst_draw(wolf_context_t *context);
-void bst_destroy(wolf_context_t *context);
+int bst_init(bst_context_t *context);
+void bst_update(bst_context_t *context);
+void bst_event(bst_context_t *context);
+void bst_draw(bst_context_t *context);
+void bst_destroy(bst_context_t *context);
 
-int hill_init(wolf_context_t *context);
-void hill_update(wolf_context_t *context);
-void hill_event(wolf_context_t *context);
-void hill_draw(wolf_context_t *context);
-void hill_destroy(wolf_context_t *context);
+int hill_init(bst_context_t *context);
+void hill_update(bst_context_t *context);
+void hill_event(bst_context_t *context);
+void hill_draw(bst_context_t *context);
+void hill_destroy(bst_context_t *context);
 
-int selection_init(wolf_context_t *window);
-void selection_update(wolf_context_t *window);
-void selection_event(wolf_context_t *window);
-void selection_draw(wolf_context_t *window);
-void selection_destroy(wolf_context_t *window);
+int ranked_init(bst_context_t *context);
+void ranked_update(bst_context_t *context);
+void ranked_event(bst_context_t *context);
+void ranked_draw(bst_context_t *context);
+void ranked_destroy(bst_context_t *context);
 
-int interlude_init(wolf_context_t *context);
-void interlude_update(wolf_context_t *context);
-void interlude_event(wolf_context_t *context);
-void interlude_draw(wolf_context_t *context);
-void interlude_destroy(wolf_context_t *context);
+int selection_init(bst_context_t *window);
+void selection_update(bst_context_t *window);
+void selection_event(bst_context_t *window);
+void selection_draw(bst_context_t *window);
+void selection_destroy(bst_context_t *window);
+
+int interlude_init(bst_context_t *context);
+void interlude_update(bst_context_t *context);
+void interlude_event(bst_context_t *context);
+void interlude_draw(bst_context_t *context);
+void interlude_destroy(bst_context_t *context);
 
 #endif /* CONTEXT_WOLF_3D_H */

@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include "scenes.h"
 
-static void resolve_alt(wolf_context_t *context, player_t *player)
+static void resolve_alt(bst_context_t *context, player_t *player)
 {
     sfVector2i mouse_pos =
         sfMouse_getPositionRenderWindow(context->view->window);
@@ -30,7 +30,7 @@ static void resolve_alt(wolf_context_t *context, player_t *player)
 static void resolve_keyboard(sfVector2f *target_pos, player_t *player,
     float speed, int *move)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyW)) {
+    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         target_pos->x += -sin(*player->angle) * speed;
         target_pos->y += cos(*player->angle) * speed;
         (*move)++;
@@ -40,7 +40,7 @@ static void resolve_keyboard(sfVector2f *target_pos, player_t *player,
         target_pos->y -= cos(*player->angle) * speed / 2;
         (*move)++;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyA)) {
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         target_pos->x -= -sin(*player->angle + M_PI_2) * speed;
         target_pos->y -= cos(*player->angle + M_PI_2) * speed;
         (*move)++;
@@ -52,7 +52,7 @@ static void resolve_keyboard(sfVector2f *target_pos, player_t *player,
     }
 }
 
-static void resolve_keyboard2(player_t *player, wolf_context_t *context)
+static void resolve_keyboard2(player_t *player, bst_context_t *context)
 {
     if (sfKeyboard_isKeyPressed(sfKeyH)) {
         player->infos.rdi = EMOTING;
@@ -77,10 +77,10 @@ static void resolve_rdi(player_t *player)
         player->param.fov = DEG_TO_RAD(60);
 }
 
-void player_movement_keyboard(wolf_context_t *context, player_t *player)
+void player_movement_keyboard(bst_context_t *context, player_t *player)
 {
     int move = 0;
-    float speed = player->delta_t / 3.f;
+    float speed = player->delta_t / 3.f * player->infos.spd;
     sfVector2f base_pos = {*player->x, *player->y};
     sfVector2f target_pos = {*player->x, *player->y};
     int isls = sfKeyboard_isKeyPressed(sfKeyLShift);

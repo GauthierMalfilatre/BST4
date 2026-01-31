@@ -24,16 +24,16 @@ typedef struct button_s {
     char is_hovered;
     char is_pressed;
     char is_select;
-    void (*button_fonc)(wolf_context_t *);
+    void (*button_fonc)(bst_context_t *);
 } button_t;
 
 // Button functions
-void play(wolf_context_t *window);
-void multiplayer(wolf_context_t *window);
-void mode_start(wolf_context_t *window);
-void back_start(wolf_context_t *window);
+void play(bst_context_t *window);
+void multiplayer(bst_context_t *window);
+void mode_start(bst_context_t *window);
+void back_start(bst_context_t *window);
 
-typedef void (*ptr_fonc_t)(wolf_context_t *window);
+typedef void (*ptr_fonc_t)(bst_context_t *window);
 
 // Function pointer array and button text
 static const ptr_fonc_t b_fonctions[] = {
@@ -44,7 +44,7 @@ static const char *text_help[] __attribute__((unused)) =
 {"play", "2 players", "BS:GO", "back"};
 
 static const char *name_mode[] __attribute__((unused)) =
-{"BS:GO", "HILL"};
+{"BS:GO", "HILL", "RANKED"};
 
 static const int nb_buttons_count =
 sizeof(b_fonctions) / sizeof(b_fonctions[0]);

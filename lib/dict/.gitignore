@@ -1,0 +1,7 @@
+# IDE folder
+.idea/
+.vscode/
+
+# Build object
+*.o
+*.a

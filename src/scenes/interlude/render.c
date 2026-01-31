@@ -25,7 +25,7 @@ static void sort_list(player_t **players, const int n)
     }
 }
 
-static void draw_winner(interlude_t *s, wolf_context_t *context)
+static void draw_winner(interlude_t *s, bst_context_t *context)
 {
     char bffer[512];
     view_t *v = context->view;
@@ -43,7 +43,7 @@ static void draw_winner(interlude_t *s, wolf_context_t *context)
     return;
 }
 
-static void draw_player(interlude_t *s, wolf_context_t *context,
+static void draw_player(interlude_t *s, bst_context_t *context,
     player_t *player, int i)
 {
     float r = context->view->win_size.y / 1080.f;
@@ -63,7 +63,7 @@ static void draw_player(interlude_t *s, wolf_context_t *context,
     sfRenderWindow_drawText(context->view->window, s->text, 0);
 }
 
-static void draw_players(interlude_t *s, wolf_context_t *context)
+static void draw_players(interlude_t *s, bst_context_t *context)
 {
     player_t **players = malloc(sizeof(player_t *) * context->n_players);
     float r = context->view->win_size.y / 1080.f;
@@ -86,7 +86,7 @@ static void draw_players(interlude_t *s, wolf_context_t *context)
     free(players);
 }
 
-void draw_point_sub1(interlude_t *s, wolf_context_t *context, float r,
+void draw_point_sub1(interlude_t *s, bst_context_t *context, float r,
     float ry)
 {
     char bffer[16];
@@ -104,7 +104,7 @@ void draw_point_sub1(interlude_t *s, wolf_context_t *context, float r,
     sfRenderWindow_drawText(context->view->window, s->text, 0);
 }
 
-void draw_point_sub2(interlude_t *s, wolf_context_t *context, float r,
+void draw_point_sub2(interlude_t *s, bst_context_t *context, float r,
     float ry)
 {
     char bffer[16];
@@ -121,7 +121,7 @@ void draw_point_sub2(interlude_t *s, wolf_context_t *context, float r,
     sfRenderWindow_drawText(context->view->window, s->text, 0);
 }
 
-static void draw_points(interlude_t *s, wolf_context_t *context)
+static void draw_points(interlude_t *s, bst_context_t *context)
 {
     float r = context->view->win_size.x / 1920.f;
     float ry = context->view->win_size.y / 1080.f;
@@ -130,7 +130,7 @@ static void draw_points(interlude_t *s, wolf_context_t *context)
     draw_point_sub2(s, context, r, ry);
 }
 
-void draw_two_texts_bottom(interlude_t *s, wolf_context_t *context,
+void draw_two_texts_bottom(interlude_t *s, bst_context_t *context,
     const char *left_text, const char *right_text)
 {
     float r = context->view->win_size.y / 1080.f;
@@ -150,7 +150,7 @@ void draw_two_texts_bottom(interlude_t *s, wolf_context_t *context,
     sfRenderWindow_drawText(context->view->window, s->text, NULL);
 }
 
-void interlude_draw(wolf_context_t *context)
+void interlude_draw(bst_context_t *context)
 {
     interlude_t *s;
 

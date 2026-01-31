@@ -8,7 +8,7 @@
 #include "scenes.h"
 #include "credit.h"
 
-int credit_init(wolf_context_t *window)
+int credit_init(bst_context_t *window)
 {
     window->credit = malloc(sizeof(credit_t));
     if (!window->credit)
@@ -18,13 +18,13 @@ int credit_init(wolf_context_t *window)
     return OK;
 }
 
-void credit_update(wolf_context_t *window)
+void credit_update(bst_context_t *window)
 {
     (void)window;
     return;
 }
 
-void credit_event(wolf_context_t *window)
+void credit_event(bst_context_t *window)
 {
     if (window->evt.type == sfEvtClosed) {
         sfRenderWindow_close(window->view->window);
@@ -38,7 +38,7 @@ void credit_event(wolf_context_t *window)
     }
 }
 
-void credit_draw(wolf_context_t *window)
+void credit_draw(bst_context_t *window)
 {
     sfRenderWindow_clear(window->view->window, sfBlack);
     sfRenderWindow_drawSprite(window->view->window,
@@ -47,7 +47,7 @@ void credit_draw(wolf_context_t *window)
         window->credit->text_credit, NULL);
 }
 
-void credit_destroy(wolf_context_t *window)
+void credit_destroy(bst_context_t *window)
 {
     if (!window->credit)
         return;

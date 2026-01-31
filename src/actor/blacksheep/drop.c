@@ -7,11 +7,11 @@
 #include "wolf.h"
 #include "sound.h"
 
-void drop_blacksheep(wolf_context_t *context)
+void drop_blacksheep(bst_context_t *context)
 {
     blacksheep_t *bs = context->bs;
 
-    if (context->mode != BS_GO || !bs->is_carried) {
+    if ((context->mode != BS_GO && context->mode != RANKED) || !bs->is_carried) {
         return;
     }
     bs->pos.x = *bs->is_carried->x;

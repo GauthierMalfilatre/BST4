@@ -101,7 +101,7 @@ static void draw_name(player_t *player, player_t *target, const int x_out,
         sfWhite);
 }
 
-void draw_mob(wolf_context_t *data, player_t *player)
+void draw_mob(bst_context_t *data, player_t *player)
 {
     int screen_x;
     double depth;

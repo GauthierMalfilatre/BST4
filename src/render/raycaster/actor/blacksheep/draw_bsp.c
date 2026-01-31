@@ -7,12 +7,12 @@
 #include "wolf.h"
 #include "../../../render.h"
 
-void draw_bsps(wolf_context_t *context, player_t *player)
+void draw_bsps(bst_context_t *context, player_t *player)
 {
     int x_out;
     double depth_out;
 
-    if (context->mode != BS_GO) {
+    if (context->mode != BS_GO && context->mode != RANKED) {
         return;
     }
     for (bsp_t *bsp = context->cmap->bsp; bsp; bsp = bsp->next) {

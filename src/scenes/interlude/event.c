@@ -7,9 +7,9 @@
 #include "wolf.h"
 #include "scenes.h"
 
-void reinit_game(wolf_context_t *context)
+void reinit_game(bst_context_t *context)
 {
-    if (context->mode != BS_GO) {
+    if (context->mode != BS_GO && context->mode != RANKED) {
         return;
     }
     for (int i = 0; i < context->n_players; i++) {
@@ -22,7 +22,7 @@ void reinit_game(wolf_context_t *context)
     spawn_blacksheep(context);
 }
 
-static void handle_presse(wolf_context_t *context)
+static void handle_presse(bst_context_t *context)
 {
     sfBool enter_pressed = sfKeyboard_isKeyPressed(sfKeyEnter) ||
         sfJoystick_isButtonPressed(0, 1);
@@ -33,13 +33,13 @@ static void handle_presse(wolf_context_t *context)
         reinit_game(context);
         change_scene(context->mode == HILL || (context->wins.x >= 6 ||
             context->wins.y >= 6)
-            ? SELECTION_SCENE : GAME_BST_SCENE, context);
+            ? SELECTION_SCENE : (context->mode == BS_GO ) ? GAME_BST_SCENE : GAME_RANKED_SCENE, context);
     }
     if (escape_pressed)
         change_scene(MENU_SCENE, context);
 }
 
-void interlude_event(wolf_context_t *context)
+void interlude_event(bst_context_t *context)
 {
     if (!context)
         return;

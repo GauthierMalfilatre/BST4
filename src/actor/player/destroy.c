@@ -38,6 +38,7 @@ static void destroy_player(player_t *player)
         SDL_HapticClose(player->sdl.h);
     if (player->sdl.gc)
         SDL_GameControllerClose(player->sdl.gc);
+    dict_clear(player->dict);
     free(player->framebuffer);
     free(player->zbuffer);
     free(player->name);

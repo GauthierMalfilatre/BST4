@@ -15,7 +15,7 @@
     #define GET_BOUNDS(n) sfRectangleShape_getGlobalBounds(GET_SHAPE(n).shape)
 
 typedef float (*ptr_fonc_percentage_t)(int value);
-typedef void (*ptr_fonc_t)(wolf_context_t *window);
+typedef void (*ptr_fonc_t)(bst_context_t *window);
 
 typedef struct slider_s {
     sfRectangleShape *shape;
@@ -24,16 +24,16 @@ typedef struct slider_s {
     char is_hovered;
     char is_pressed;
     char is_select;
-    void (*slider_fonctions)(wolf_context_t *);
+    void (*slider_fonctions)(bst_context_t *);
     float (*value_to_percentage)(int value);
 } slider_t;
 
 // Slider fonctions
-void resolution_slider(wolf_context_t *window);
-void sound_slider(wolf_context_t *window);
-void music_slider(wolf_context_t *window);
-void sensibilite_slider(wolf_context_t *window);
-void framerate_slider(wolf_context_t *window);
+void resolution_slider(bst_context_t *window);
+void sound_slider(bst_context_t *window);
+void music_slider(bst_context_t *window);
+void sensibilite_slider(bst_context_t *window);
+void framerate_slider(bst_context_t *window);
 
 // Slider value to pos
 float resolution_to_percentage(int value);

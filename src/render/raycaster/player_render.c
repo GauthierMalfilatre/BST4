@@ -8,14 +8,14 @@
 #include "../render.h"
 #include "framebuffer/font/wolf_font.h"
 
-static void draw_self(wolf_context_t *context, player_t *player)
+static void draw_self(bst_context_t *context, player_t *player)
 {
     (void) context;
     draw_sprite((sfVector2f){player->param.size.x / 2, UX_CHN}, player,
         player->character->self, player->utils->self_rect);
 }
 
-void player_render(wolf_context_t *context, player_t *player)
+void player_render(bst_context_t *context, player_t *player)
 {
     clear_framebuffer(player);
     raycaster(context, player);
@@ -29,7 +29,7 @@ void player_render(wolf_context_t *context, player_t *player)
     draw_ui(context, player);
 }
 
-static void player_draw(wolf_context_t *context, player_t *player)
+static void player_draw(bst_context_t *context, player_t *player)
 {
     if (!player->utils || !player->utils->render_texture) {
         return;
@@ -45,7 +45,7 @@ static void player_draw(wolf_context_t *context, player_t *player)
             player->utils->deadrect, 0);
 }
 
-void player_render_draw(wolf_context_t *context)
+void player_render_draw(bst_context_t *context)
 {
     multithread_render(context);
     for (int i = 0; i < context->n_players; i++) {

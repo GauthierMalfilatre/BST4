@@ -8,7 +8,7 @@
 #include "../../../../render.h"
 #include "scenes.h"
 
-void draw_blacksheep_ui(player_t *player, wolf_context_t *context)
+void draw_blacksheep_ui(player_t *player, bst_context_t *context)
 {
     if (context->bs && context->bs->is_carried == player) {
         draw_sprite_x_y_2d((sfVector2f){-30, 200}, player, 2.f,

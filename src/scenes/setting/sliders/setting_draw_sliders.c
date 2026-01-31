@@ -7,7 +7,7 @@
 
 #include "setting_sliders.h"
 
-void draw_sliders_setting(wolf_context_t *window)
+void draw_sliders_setting(bst_context_t *window)
 {
     for (int i = 0; i < nb_sliders_count; i++) {
         if (window->setting->sliders[i].shape != NULL) {

@@ -59,6 +59,7 @@ static int create_player_deprecated(player_t **player, const int i)
 
 int create_players(player_t ***players, const int n_players)
 {
+    printf("YOU SUCKER!\n");
     if (!players) {
         return ERROR;
     }

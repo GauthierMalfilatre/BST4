@@ -14,7 +14,7 @@ void play_sound(sfSound *sound)
     sfSound_play(sound);
 }
 
-void create_sound(wolf_context_t *context)
+void create_sound(bst_context_t *context)
 {
     sound_t sound = {0};
 

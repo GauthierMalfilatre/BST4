@@ -9,7 +9,7 @@
 #include "sound.h"
 #include "scenes.h"
 
-void button_fonctions_selection(wolf_context_t *window)
+void button_fonctions_selection(bst_context_t *window)
 {
     for (int i = 0; i < window->n_players + 4; i++) {
         if (window->selection->buttons[i].is_select == 1 &&
@@ -23,7 +23,7 @@ void button_fonctions_selection(wolf_context_t *window)
     }
 }
 
-static void spawn_all(wolf_context_t *window)
+static void spawn_all(bst_context_t *window)
 {
     window->wins = (sfVector2i){0, 0};
     for (int i = 0; i < window->n_players; i++) {
@@ -33,9 +33,10 @@ static void spawn_all(wolf_context_t *window)
     spawn_blacksheep(window);
 }
 
-void start_game(wolf_context_t *window, int i)
+void start_game(bst_context_t *window, int i)
 {
     (void) i;
+    sfRenderWindow_setMouseCursorVisible(window->view->window, sfFalse);
     for (int i = 0; i < window->n_players; i++) {
         window->players[i]->character =
         window->characters[window->selection->index_players[i]];
@@ -48,10 +49,10 @@ void start_game(wolf_context_t *window, int i)
         sfSound_setVolume(s->sound, window->w_setting[W_SOUND]);
     }
     change_scene(window->mode == BS_GO ? GAME_BST_SCENE :
-        GAME_HILL_SCENE, window);
+        window->mode == HILL ? GAME_HILL_SCENE : GAME_RANKED_SCENE, window);
 }
 
-void map_right(wolf_context_t *window, int i)
+void map_right(bst_context_t *window, int i)
 {
     (void) i;
     window->selection->index_map++;
@@ -62,7 +63,7 @@ void map_right(wolf_context_t *window, int i)
     return;
 }
 
-void map_left(wolf_context_t *window, int i)
+void map_left(bst_context_t *window, int i)
 {
     (void) i;
     window->selection->index_map--;
@@ -73,9 +74,9 @@ void map_left(wolf_context_t *window, int i)
     return;
 }
 
-void rumble(wolf_context_t *window, int i)
+void rumble(bst_context_t *window, int i)
 {
-    if (i > 0 && i < window->n_players) {
+    if (i >= 0 && i < window->n_players) {
         if (window->players[i]->sdl.h) {
             rumble_controller(window->players[i]);
         }

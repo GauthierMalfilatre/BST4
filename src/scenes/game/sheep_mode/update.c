@@ -8,7 +8,7 @@
 #include "scenes.h"
 
 static void do_the_terrible_tragedie_and_made_bouseville_team_not_win(
-    wolf_context_t *context)
+    bst_context_t *context)
 {
     add_n_rain_drops(&context->bst->rain, 10000);
     eteint_le_noir_mouton(context);
@@ -27,7 +27,7 @@ static void pick_sheep(player_t *player, blacksheep_t *bs)
     }
 }
 
-static int get_npfteam(wolf_context_t *context, const int team)
+static int get_npfteam(bst_context_t *context, const int team)
 {
     int count = 0;
 
@@ -40,7 +40,7 @@ static int get_npfteam(wolf_context_t *context, const int team)
     return count;
 }
 
-static void check_endgame(wolf_context_t *context)
+static void check_endgame(bst_context_t *context)
 {
     if (!context->bst) {
         return;
@@ -61,7 +61,7 @@ static void check_endgame(wolf_context_t *context)
     }
 }
 
-static void endskill(wolf_context_t *context, player_t *player)
+static void endskill(bst_context_t *context, player_t *player)
 {
     if (!player->character || !player->character->endskill) {
         return;
@@ -69,9 +69,10 @@ static void endskill(wolf_context_t *context, player_t *player)
     player->character->endskill(context, player, sfFalse);
 }
 
-void update_player(wolf_context_t *context, player_t *player)
+void update_player(bst_context_t *context, player_t *player)
 {
     player->time(player, context);
+    update_buff(context, player);
     if (player->device != -1 && player->infos.life > 0.f) {
         player_resolve_bleeding(player, context);
         player->move(context, player);
@@ -80,7 +81,7 @@ void update_player(wolf_context_t *context, player_t *player)
     }
 }
 
-void bst_update(wolf_context_t *context)
+void bst_update(bst_context_t *context)
 {
     if (!context || !context->bst ||
         context->current_scene != GAME_BST_SCENE)

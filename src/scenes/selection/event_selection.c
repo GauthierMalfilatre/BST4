@@ -14,7 +14,7 @@ static const ptr_fonc_change_t actions[] = {
     change_team
 };
 
-void change_character(wolf_context_t *window, int i)
+void change_character(bst_context_t *window, int i)
 {
     if (window->selection->index_players[i] >= window->n_chars)
         window->selection->index_players[i] = 0;
@@ -30,7 +30,7 @@ void change_character(wolf_context_t *window, int i)
     );
 }
 
-void change_team(wolf_context_t *window, int i)
+void change_team(bst_context_t *window, int i)
 {
     player_t *player = window->players[i];
     int max_teams = 1;
@@ -54,7 +54,7 @@ static char is_selection_ready(selection_t *selection)
         COOLDOWN_TIME;
 }
 
-static void handle_player_selection(wolf_context_t *window)
+static void handle_player_selection(bst_context_t *window)
 {
     player_t *player;
     int result;
@@ -75,7 +75,7 @@ static void handle_player_selection(wolf_context_t *window)
     sfClock_restart(window->selection->player_selection_clocks);
 }
 
-void event_key_selection(wolf_context_t *window)
+void event_key_selection(bst_context_t *window)
 {
     if (is_selection_ready(window->selection)) {
         handle_player_selection(window);

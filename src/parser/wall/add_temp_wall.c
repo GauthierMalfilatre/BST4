@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include "parser.h"
 
-int add_temp_wall_p(char **warray, wolf_context_t *context)
+int add_temp_wall_p(char **warray, bst_context_t *context)
 {
     int exticode = OK;
 

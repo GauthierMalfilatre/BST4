@@ -25,7 +25,7 @@ static void create_window(view_t *view, unsigned int fullscreen)
         view->win_size.y * view->win_size.y);
 }
 
-void change_resolution(wolf_context_t *window, unsigned int width,
+void change_resolution(bst_context_t *window, unsigned int width,
     unsigned int height)
 {
     scenes[window->current_scene].destroy(window);

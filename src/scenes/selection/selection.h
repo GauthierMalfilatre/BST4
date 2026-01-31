@@ -12,7 +12,7 @@
 
     #include "wolf.h"
 
-typedef void (*ptr_fonc_change_t)(wolf_context_t *, int);
+typedef void (*ptr_fonc_change_t)(bst_context_t *, int);
 
 typedef struct selection_s {
     sfTexture *texture_bg_menu;
@@ -30,28 +30,28 @@ typedef struct selection_s {
 } selection_t;
 
 // Initialization functions
-void init_selection_background(wolf_context_t *window);
-void init_selection_buttons(wolf_context_t *window);
-void create_bottom_selection(wolf_context_t *window);
-void init_selection_text(wolf_context_t *window);
-void init_selection_map(wolf_context_t *window);
-void create_arrow_buttons(wolf_context_t *window);
+void init_selection_background(bst_context_t *window);
+void init_selection_buttons(bst_context_t *window);
+void create_bottom_selection(bst_context_t *window);
+void init_selection_text(bst_context_t *window);
+void init_selection_map(bst_context_t *window);
+void create_arrow_buttons(bst_context_t *window);
 
 // Draw functions
-void draw_buttons_selection(wolf_context_t *window);
+void draw_buttons_selection(bst_context_t *window);
 
 // Destroy functions
 void destroy_all_buttons_selection(selection_t *selection, int total_buttons);
 
 // Event functions
-void selection_handle_mouse(wolf_context_t *window);
-void event_key_selection(wolf_context_t *window);
+void selection_handle_mouse(bst_context_t *window);
+void event_key_selection(bst_context_t *window);
 
 // Update functions
-void button_fonctions_selection(wolf_context_t *window);
+void button_fonctions_selection(bst_context_t *window);
 
-void change_character(wolf_context_t *window, int i);
-void change_team(wolf_context_t *window, int i);
+void change_character(bst_context_t *window, int i);
+void change_team(bst_context_t *window, int i);
 
 static const sfColor team_colors[] = {
     {255, 80, 80, 255},
@@ -65,6 +65,7 @@ static const int len_team_color = sizeof(team_colors) / sizeof(team_colors[0]);
 static const int max_teams_per_mode[] = {
     [BS_GO] = 2,
     [HILL] = 4,
+    [RANKED] = 2,
 };
 
 #endif // SELECTION_H

@@ -24,7 +24,7 @@ static sfShader *init_shader(sfTexture *texture_bg, sfVector2u win_size)
     return shader;
 }
 
-void init_setting_background(wolf_context_t *window)
+void init_setting_background(bst_context_t *window)
 {
     window->setting->texture_bg =
     sfTexture_createFromFile("./assets/menu_assets/menu_background_2.png", 0);
@@ -48,7 +48,7 @@ void init_setting_background(wolf_context_t *window)
     };
 }
 
-void init_setting_text(wolf_context_t *window)
+void init_setting_text(bst_context_t *window)
 {
     sfFloatRect bounds;
     sfText *text;
@@ -69,7 +69,7 @@ void init_setting_text(wolf_context_t *window)
     window->setting->text_setting = text;
 }
 
-void init_setting_param(wolf_context_t *window)
+void init_setting_param(bst_context_t *window)
 {
     window->setting->setting[SETTING_RESOLUTION] =
         window->view->videomode.height;

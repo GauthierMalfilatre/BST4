@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-void interlude_timer(wolf_context_t *context)
+void interlude_timer(bst_context_t *context)
 {
     if (!context) {
         return;

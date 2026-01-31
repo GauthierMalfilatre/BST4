@@ -9,7 +9,7 @@
 #include "sound.h"
 #include "parser.h"
 
-const skill_tab_t skill_tab[8] = {
+const skill_tab_t skill_tab[] = {
     {"heal", &skill_heal, &skill_heal_end, 45000.f, 35000.f},
     {"wall", &skill_wall, &skill_wall_end, 60000.f, 30000.f},
     {"atk", &skill_atk, &skill_atk_end, 30000.f, 10000.f},
@@ -17,10 +17,13 @@ const skill_tab_t skill_tab[8] = {
     {"bleed", &skill_bleeding, &skill_bleeding_end, 30000.f, 20000.f},
     {"invisible", &skill_invisible, &skill_invisible_end, 45000.f, 30000.f},
     {"steal", &skill_steal, &skill_steal_end, 1000.f, 0.f},
-    {"tp", &skill_tp, &skill_tp_end, 60000.f, 0.f},
+    {"boom", &skill_boom, &skill_boom_end, 20000.f, 10000.f},
+    {"radiance", &skill_radiance, &skill_radiance_end, MILLI(120.f), MILLI(60.f)},
 };
 
-static int sounds_exists(char **warray, wolf_context_t *context)
+const int skill_tab_size = sizeof(skill_tab) / sizeof(skill_tab_t);
+
+static int sounds_exists(char **warray, bst_context_t *context)
 {
     for (int i = 0; warray[i] && i < 7; i++) {
         if (!get_sound(context->w_sound.sounds, warray[i])) {
@@ -31,7 +34,7 @@ static int sounds_exists(char **warray, wolf_context_t *context)
     return OK;
 }
 
-static voicelines_t create_voicelines(char **warray, wolf_context_t *context)
+static voicelines_t create_voicelines(char **warray, bst_context_t *context)
 {
     voicelines_t sounds;
     sounds_t *s = context->w_sound.sounds;
@@ -55,10 +58,10 @@ static voicelines_t create_voicelines(char **warray, wolf_context_t *context)
     return sounds;
 }
 
-static int create_skill(character_t *c, char *skill, wolf_context_t *context)
+static int create_skill(character_t *c, char *skill, bst_context_t *context)
 {
     (void)context;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < skill_tab_size; i++) {
         if (!strcmp(skill_tab[i].command, skill)) {
             c->skill = skill_tab[i].skill;
             c->endskill = skill_tab[i].endskill;
@@ -71,7 +74,7 @@ static int create_skill(character_t *c, char *skill, wolf_context_t *context)
     return ERROR;
 }
 
-int add_character_p(char **warray, wolf_context_t *context)
+int add_character_p(char **warray, bst_context_t *context)
 {
     character_t *character = malloc(sizeof(character_t));
 

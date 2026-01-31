@@ -88,6 +88,7 @@ sfColor blend_rgb332(sfColor dst, sfColor src, float alpha);
 int project_stuff_on_screen(player_t *player, sfVector2f pos,
     int *screen_x_out, double *depth_out);
 
+void draw_line(player_t *player, sfVector4i_t ab, sfColor color, sfVector2f df);
 void clear_framebuffer(player_t *player);
 void put_pixel(player_t *player, sfVector2i xy, sfColor color, sfVector2f df);
 void draw_rect(player_t *player, sfVector4i_t xy, sfColor color, double depth);
@@ -101,17 +102,19 @@ void draw_sprite_cropped(sfVector2f xdp, player_t *player,
 void draw_sprite_x_y_2d(sfVector2f pos, player_t *player,
     float scale, sfIntRect_text_t recttext);
 
-void draw_blacksheep(wolf_context_t *context, player_t *player);
-void draw_bullets(wolf_context_t *context, player_t *player);
-void draw_stuffs(wolf_context_t *context, player_t *player);
-void draw_mob(wolf_context_t *data, player_t *player);
-void draw_bsps(wolf_context_t *context, player_t *player);
-void draw_heals(wolf_context_t *context, player_t *player);
+void draw_blacksheep(bst_context_t *context, player_t *player);
+void draw_bullets(bst_context_t *context, player_t *player);
+void draw_stuffs(bst_context_t *context, player_t *player);
+void draw_mob(bst_context_t *data, player_t *player);
+void draw_bsps(bst_context_t *context, player_t *player);
+void draw_heals(bst_context_t *context, player_t *player);
 
-void render_floor(player_t *p, sfVector2i screen, wolf_context_t *ctx);
-void render_ceiling(player_t *player, sfVector2i screen, wolf_context_t *ctx);
+void draw_minimap(bst_context_t *context, player_t *self);
 
-void draw_wall(wolf_context_t *ray, player_t *player, cast_ray_params_t param);
+void render_floor(player_t *p, sfVector2i screen, bst_context_t *ctx);
+void render_ceiling(player_t *player, sfVector2i screen, bst_context_t *ctx);
+
+void draw_wall(bst_context_t *ray, player_t *player, cast_ray_params_t param);
 
 typedef struct raycaster_param_s {
     int rays;
@@ -120,24 +123,25 @@ typedef struct raycaster_param_s {
     int i;
 } raycaster_param_t;
 
-void cast_ray(wolf_context_t *ray, player_t *player, float angle,
+void cast_ray(bst_context_t *ray, player_t *player, float angle,
     raycaster_param_t p);
-void raycaster(wolf_context_t *context, player_t *player);
+void raycaster(bst_context_t *context, player_t *player);
 
 void draw_cursor(player_t *player);
 void draw_hps(player_t *player);
 void draw_ammo(player_t *player);
 void draw_skill(player_t *player);
-void draw_blacksheep_ui(player_t *player, wolf_context_t *context);
-void draw_ui(wolf_context_t *context, player_t *player);
-void draw_directions(wolf_context_t *context, player_t *player);
+void draw_allies(bst_context_t *context, player_t *self);
+void draw_blacksheep_ui(player_t *player, bst_context_t *context);
+void draw_ui(bst_context_t *context, player_t *player);
+void draw_directions(bst_context_t *context, player_t *player);
 
-void player_render(wolf_context_t *context, player_t *player);
-void player_render_draw(wolf_context_t *context);
+void player_render(bst_context_t *context, player_t *player);
+void player_render_draw(bst_context_t *context);
 
 // multithread
-void multithread_render(wolf_context_t *context);
-void destroy_render_multithread(wolf_context_t *context);
-char init_render_multithread(wolf_context_t *context);
+void multithread_render(bst_context_t *context);
+void destroy_render_multithread(bst_context_t *context);
+char init_render_multithread(bst_context_t *context);
 
 #endif /* RENDER_WOLF_H */

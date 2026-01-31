@@ -11,7 +11,7 @@
 #include "scenes.h"
 #include "parser.h"
 
-void button_start_fonctions(wolf_context_t *window)
+void button_start_fonctions(bst_context_t *window)
 {
     for (int i = 0; i < nb_buttons_count; i++) {
         if (window->menu->buttons[i].is_select == 1) {
@@ -24,7 +24,7 @@ void button_start_fonctions(wolf_context_t *window)
     }
 }
 
-static void fill_teams(wolf_context_t *context)
+static void fill_teams(bst_context_t *context)
 {
     if (context->n_players < 2 || context->n_players > 4) {
         return;
@@ -32,17 +32,19 @@ static void fill_teams(wolf_context_t *context)
     context->players[0]->equipe = 0;
     context->players[1]->equipe = 1;
     if (context->n_players > 2) {
-        context->players[2]->equipe = context->mode == BS_GO ? 1 : 2;
+        context->players[2]->equipe = context->mode == BS_GO ||
+        context->mode == RANKED ? 1 : 2;
     }
     if (context->n_players > 3) {
-        if (context->mode == BS_GO) {
+        if (context->mode == BS_GO || context->mode == RANKED) {
             context->players[2]->equipe = 0;
         }
-        context->players[3]->equipe = context->mode == BS_GO ? 1 : 3;
+        context->players[3]->equipe = context->mode == BS_GO ||
+            context->mode == RANKED ? 1 : 3;
     }
 }
 
-static void create_all_players(wolf_context_t *window)
+static void create_all_players(bst_context_t *window)
 {
     char buffer[512];
 
@@ -52,7 +54,7 @@ static void create_all_players(wolf_context_t *window)
         create_player(&window->players[i], i, window->view->videomode);
         window->players[i]->character = window->characters[0];
         window->players[i]->device = i;
-        window->players[i]->move = i ? &player_movement_gamepad :
+        window->players[i]->move = i ? &player_movement_ai :
             &player_movement_keyboard;
         window->players[i]->move_select = i ? &player_select_gamepad :
             &player_select_keyboard;
@@ -62,7 +64,7 @@ static void create_all_players(wolf_context_t *window)
     fill_teams(window);
 }
 
-void play(wolf_context_t *window)
+void play(bst_context_t *window)
 {
     if (window->menu->nb_players >= 2 && window->menu->nb_players <= 4) {
         window->n_players = window->menu->nb_players;
@@ -73,7 +75,7 @@ void play(wolf_context_t *window)
     change_scene(SELECTION_SCENE, window);
 }
 
-void multiplayer(wolf_context_t *window)
+void multiplayer(bst_context_t *window)
 {
     char buffer[13];
 
@@ -85,7 +87,7 @@ void multiplayer(wolf_context_t *window)
     update_text(window->menu->buttons[B_MULTIPLAYER].text, buffer);
 }
 
-void back_start(wolf_context_t *window)
+void back_start(bst_context_t *window)
 {
     window->menu->nb_players = 0;
     buttons_scenes[window->menu->id_scene].destroy(window->menu);
@@ -93,10 +95,10 @@ void back_start(wolf_context_t *window)
     buttons_scenes[window->menu->id_scene].init(window);
 }
 
-void mode_start(wolf_context_t *window)
+void mode_start(bst_context_t *window)
 {
     window->mode++;
-    if (window->mode > HILL) {
+    if (window->mode > RANKED) {
         window->mode = BS_GO;
     }
     update_text(window->menu->buttons[B_MODE].text, name_mode[window->mode]);

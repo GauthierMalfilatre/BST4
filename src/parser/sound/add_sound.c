@@ -8,7 +8,7 @@
 #include "sound.h"
 #include <string.h>
 
-int add_sound_p(char **warray, wolf_context_t *context)
+int add_sound_p(char **warray, bst_context_t *context)
 {
     if (my_len_word_array(warray) < 3 || !context) {
         return ERROR;

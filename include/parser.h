@@ -26,24 +26,24 @@ typedef struct skill_tab_s {
 
 int add_wall(wall_t wall, maps_t *map);
 
-int add_wall_p(char **warray, wolf_context_t *context);
-int add_temp_wall_p(char **warray, wolf_context_t *context);
-int add_player_p(char **warray, wolf_context_t *context);
-int add_texture_p(char **warray, wolf_context_t *context);
-int add_character_p(char **warray, wolf_context_t *context);
-int add_map_p(char **warray, wolf_context_t *context);
-int add_sound_p(char **warray, wolf_context_t *context);
-int add_spawn_p(char **warray, wolf_context_t *context);
-int add_stuff_p(char **warray, wolf_context_t *context);
-int add_bsp_p(char **warray, wolf_context_t *context);
-int add_hp_p(char **warray, wolf_context_t *context);
-int add_floor_p(char **warray, wolf_context_t *context);
+int add_wall_p(char **warray, bst_context_t *context);
+int add_temp_wall_p(char **warray, bst_context_t *context);
+int add_player_p(char **warray, bst_context_t *context);
+int add_texture_p(char **warray, bst_context_t *context);
+int add_character_p(char **warray, bst_context_t *context);
+int add_map_p(char **warray, bst_context_t *context);
+int add_sound_p(char **warray, bst_context_t *context);
+int add_spawn_p(char **warray, bst_context_t *context);
+int add_stuff_p(char **warray, bst_context_t *context);
+int add_bsp_p(char **warray, bst_context_t *context);
+int add_hp_p(char **warray, bst_context_t *context);
+int add_floor_p(char **warray, bst_context_t *context);
 
-int handle_builtins(char **warray, wolf_context_t *context);
+int handle_builtins(char **warray, bst_context_t *context);
 
-int builtin_require(char **warray, wolf_context_t *context);
-int check_if_texture_exists(char **warray, wolf_context_t *context, int *err);
+int builtin_require(char **warray, bst_context_t *context);
+int check_if_texture_exists(char **warray, bst_context_t *context, int *err);
 
-int parse_ray_file(wolf_context_t *ray, const char *path);
+int parse_ray_file(bst_context_t *ray, const char *path);
 
 #endif /* PARSER_WOLF_H */

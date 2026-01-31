@@ -11,12 +11,12 @@
 
     #include "wolf.h"
 
-void destroy_music(wolf_context_t *context);
-void play_music(wolf_context_t *context, const char *path, sfBool repeat);
+void destroy_music(bst_context_t *context);
+void play_music(bst_context_t *context, const char *path, sfBool repeat);
 
 sounds_t *get_sound(sounds_t *head, const char *name);
 void play_sound(sfSound *sound);
-void create_sound(wolf_context_t *context);
+void create_sound(bst_context_t *context);
 void destroy_sound(sound_t sound);
 
 int add_sound(sounds_t **head, const char *name, const char *file);

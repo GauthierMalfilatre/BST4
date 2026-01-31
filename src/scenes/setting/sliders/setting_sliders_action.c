@@ -32,7 +32,7 @@ void check_click_sliders(setting_t *setting)
     }
 }
 
-void check_hover_slider(wolf_context_t *window, sfVector2f mouse_pos)
+void check_hover_slider(bst_context_t *window, sfVector2f mouse_pos)
 {
     slider_t *slider;
     char change_cursor = 0;
@@ -51,7 +51,7 @@ void check_hover_slider(wolf_context_t *window, sfVector2f mouse_pos)
         window->view->cursor_hand : window->view->cursor_arrow);
 }
 
-void slider_fonctions_setting(wolf_context_t *window)
+void slider_fonctions_setting(bst_context_t *window)
 {
     for (int i = 0; i < nb_sliders_count; i++) {
         if (window->setting->sliders[i].is_pressed == 1) {

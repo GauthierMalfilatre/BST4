@@ -10,7 +10,7 @@
 #include "wolf.h"
 #include "../../render/render.h"
 
-static int init_bg(wolf_context_t *context)
+static int init_bg(bst_context_t *context)
 {
     sfTexture *texture = get_texture(context->textures, "__interbg") ?
         get_texture(context->textures, "__interbg")->texture : NULL;
@@ -34,7 +34,7 @@ static int init_bg(wolf_context_t *context)
     return OK;
 }
 
-static int init_text(wolf_context_t *context)
+static int init_text(bst_context_t *context)
 {
     interlude_t *interlude = context->interlude;
 
@@ -55,7 +55,7 @@ static int init_text(wolf_context_t *context)
     return OK;
 }
 
-int interlude_init(wolf_context_t *context)
+int interlude_init(bst_context_t *context)
 {
     if (!context)
         return ERROR;

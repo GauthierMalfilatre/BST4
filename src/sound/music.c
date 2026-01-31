@@ -7,7 +7,7 @@
 
 #include "wolf.h"
 
-void destroy_music(wolf_context_t *context)
+void destroy_music(bst_context_t *context)
 {
     if (!context->w_sound.music)
         return;
@@ -16,7 +16,7 @@ void destroy_music(wolf_context_t *context)
     context->w_sound.music = NULL;
 }
 
-void play_music(wolf_context_t *context, const char *path, sfBool repeat)
+void play_music(bst_context_t *context, const char *path, sfBool repeat)
 {
     if (!path)
         return;

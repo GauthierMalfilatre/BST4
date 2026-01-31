@@ -19,7 +19,7 @@ typedef struct credit_s {
 } credit_t;
 
 // Initialization functions
-void init_credit_background(wolf_context_t *window);
-void init_credit_text(wolf_context_t *window);
+void init_credit_background(bst_context_t *window);
+void init_credit_text(bst_context_t *window);
 
 #endif // CREDIT_H

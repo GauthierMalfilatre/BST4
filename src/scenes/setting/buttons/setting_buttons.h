@@ -20,7 +20,7 @@
     #define B_BACK 6
     #define B_APPLY 7
 
-typedef void (*ptr_fonc_t)(wolf_context_t *);
+typedef void (*ptr_fonc_t)(bst_context_t *);
 
 // Button structure
 typedef struct button_s {
@@ -30,14 +30,14 @@ typedef struct button_s {
     char is_hovered;
     char is_pressed;
     char is_select;
-    void (*button_fonc)(wolf_context_t *);
+    void (*button_fonc)(bst_context_t *);
 } button_t;
 
 // Button functions
-void null_fonc(wolf_context_t *window);
-void fullscreen(wolf_context_t *window);
-void back(wolf_context_t *window);
-void apply(wolf_context_t *window);
+void null_fonc(bst_context_t *window);
+void fullscreen(bst_context_t *window);
+void back(bst_context_t *window);
+void apply(bst_context_t *window);
 
 // Function pointer array and button text
 static const ptr_fonc_t b_fonctions[] =

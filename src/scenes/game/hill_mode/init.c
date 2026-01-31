@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include "../../../render/render.h"
 
-static int init_viewport(wolf_context_t *context, float scale)
+static int init_viewport(bst_context_t *context, float scale)
 {
     sfVector2f pos;
 
@@ -31,7 +31,7 @@ static int init_viewport(wolf_context_t *context, float scale)
     return OK;
 }
 
-static int init_text(wolf_context_t *context)
+static int init_text(bst_context_t *context)
 {
     float r = context->view->win_size.y / 1080.f;
     sfFloatRect bounds;
@@ -55,7 +55,7 @@ static int init_text(wolf_context_t *context)
     return OK;
 }
 
-static int init_player(wolf_context_t *context)
+static int init_player(bst_context_t *context)
 {
     context->hill->clock = sfClock_create();
     context->hill->timelimit = 600.f;
@@ -65,7 +65,7 @@ static int init_player(wolf_context_t *context)
     return OK;
 }
 
-int hill_init(wolf_context_t *context)
+int hill_init(bst_context_t *context)
 {
     if (!context)
         return ERROR;

@@ -16,7 +16,7 @@ static int count_joysticks(void)
     return i;
 }
 
-int selection_init(wolf_context_t *window)
+int selection_init(bst_context_t *window)
 {
     if (!window)
         return ERROR;
@@ -50,12 +50,12 @@ int selection_init(wolf_context_t *window)
     return OK;
 }
 
-void selection_update(wolf_context_t *window)
+void selection_update(bst_context_t *window)
 {
     button_fonctions_selection(window);
 }
 
-void selection_event(wolf_context_t *window)
+void selection_event(bst_context_t *window)
 {
     if (window->evt.type == sfEvtClosed) {
         sfRenderWindow_close(window->view->window);
@@ -69,7 +69,7 @@ void selection_event(wolf_context_t *window)
     selection_handle_mouse(window);
 }
 
-void selection_draw(wolf_context_t *window)
+void selection_draw(bst_context_t *window)
 {
     sfRenderWindow_clear(window->view->window, sfBlack);
     if (window->selection->background_menu)
@@ -87,7 +87,7 @@ void selection_draw(wolf_context_t *window)
     draw_buttons_selection(window);
 }
 
-void selection_destroy(wolf_context_t *window)
+void selection_destroy(bst_context_t *window)
 {
     if (!window || !window->selection)
         return;

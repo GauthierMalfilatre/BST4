@@ -18,15 +18,16 @@ typedef enum scene_type_e {
     GAME_BST_SCENE,
     INTERLUDE_SCENE,
     GAME_HILL_SCENE,
+    GAME_RANKED_SCENE,
 } scene_type_t;
 
 typedef struct ref {
     int id;
-    int (*init)(wolf_context_t *);
-    void (*update)(wolf_context_t *);
-    void (*event)(wolf_context_t *);
-    void (*draw)(wolf_context_t *);
-    void (*destroy)(wolf_context_t *);
+    int (*init)(bst_context_t *);
+    void (*update)(bst_context_t *);
+    void (*event)(bst_context_t *);
+    void (*draw)(bst_context_t *);
+    void (*destroy)(bst_context_t *);
 } ref_t;
 
 static const ref_t scenes[] =
@@ -45,6 +46,9 @@ static const ref_t scenes[] =
         &interlude_draw, &interlude_destroy},
     {GAME_HILL_SCENE, &hill_init, &hill_update, &hill_event, &hill_draw,
         &hill_destroy},
+    {GAME_RANKED_SCENE, &ranked_init, &ranked_update, &ranked_event,
+        &ranked_draw, &ranked_destroy},
+
 };
 
 #endif /* SCENES_WOLF_3D_H */

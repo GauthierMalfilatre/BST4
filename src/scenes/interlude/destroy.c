@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include "../../render/render.h"
 
-void interlude_destroy(wolf_context_t *context)
+void interlude_destroy(bst_context_t *context)
 {
     if (!context || !context->interlude)
         return;

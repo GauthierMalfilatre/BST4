@@ -8,14 +8,14 @@
 #include "../../../render.h"
 #include "sound.h"
 
-static void update(wolf_context_t *context, player_t *player, heals_t *temp)
+static void update(bst_context_t *context, player_t *player, heals_t *temp)
 {
-    sfClock *clock = context->mode == BS_GO ? context->bst->clock :
-        context->hill->clock;
+    sfClock *clock = context->mode == HILL ? context->hill->clock :
+        context->bst->clock;
 
     if (!temp->is_taken &&
         get_norme(*player->x, *player->y, temp->pos.x, temp->pos.y) <= 20.f) {
-        add_healing_to_player(player, (float)player->character->maxhp
+        add_healing_to_player(player, (float)player->infos.maxhp
             / 20.f, 10000.f);
         play_force(player->character->voicelines.heal);
         temp->is_taken = sfTime_asSeconds(sfClock_getElapsedTime(clock));
@@ -26,7 +26,7 @@ static void update(wolf_context_t *context, player_t *player, heals_t *temp)
     }
 }
 
-void draw_heals(wolf_context_t *context, player_t *player)
+void draw_heals(bst_context_t *context, player_t *player)
 {
     int x_out;
     double depth_out;

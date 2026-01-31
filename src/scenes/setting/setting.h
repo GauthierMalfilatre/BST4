@@ -39,31 +39,31 @@ typedef struct setting_s {
 } setting_t;
 
 // Initialization functions
-void init_setting_background(wolf_context_t *window);
-void init_setting_buttons(wolf_context_t *window);
-void init_setting_text(wolf_context_t *window);
-void init_setting_sliders(wolf_context_t *window);
-void init_setting_param(wolf_context_t *window);
-void create_bottom_buttons(wolf_context_t *window);
+void init_setting_background(bst_context_t *window);
+void init_setting_buttons(bst_context_t *window);
+void init_setting_text(bst_context_t *window);
+void init_setting_sliders(bst_context_t *window);
+void init_setting_param(bst_context_t *window);
+void create_bottom_buttons(bst_context_t *window);
 
 // Draw functions
-void setup_shader(wolf_context_t *window);
-void draw_buttons_setting(wolf_context_t *window);
-void draw_sliders_setting(wolf_context_t *window);
+void setup_shader(bst_context_t *window);
+void draw_buttons_setting(bst_context_t *window);
+void draw_sliders_setting(bst_context_t *window);
 
 // Destroy functions
 void destroy_all_buttons_setting(setting_t *setting);
 void destroy_all_sliders_setting(setting_t *setting);
 
 // Event functions
-void setting_handle_mouse(wolf_context_t *window);
-void check_hover_slider(wolf_context_t *window, sfVector2f mouse_pos);
+void setting_handle_mouse(bst_context_t *window);
+void check_hover_slider(bst_context_t *window, sfVector2f mouse_pos);
 void check_click_sliders(setting_t *setting);
 void handle_slider_release(setting_t *setting);
 
 // Update functions
-void button_fonctions_setting(wolf_context_t *window);
-void slider_fonctions_setting(wolf_context_t *window);
+void button_fonctions_setting(bst_context_t *window);
+void slider_fonctions_setting(bst_context_t *window);
 
 static const setting_entry_t setting_table[] = {
     { SETTING_FRAMERATE, "Framerate" },

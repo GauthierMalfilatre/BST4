@@ -7,7 +7,7 @@
 
 #include "selection_buttons.h"
 
-void draw_buttons_selection(wolf_context_t *window)
+void draw_buttons_selection(bst_context_t *window)
 {
     for (int i = 0; i < window->n_players + 4; i++) {
         if (window->selection->buttons[i].shape != NULL) {

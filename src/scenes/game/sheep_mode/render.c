@@ -20,7 +20,7 @@ static int find_x(player_t *player)
         return posx - 10.f;
 }
 
-static void draw_rects(wolf_context_t *context)
+static void draw_rects(bst_context_t *context)
 {
     sfRectangleShape *rect = context->bst->bar_rect;
     int x;
@@ -61,7 +61,7 @@ static void sort_list(player_t **players, const int n)
     }
 }
 
-static void draw_score(wolf_context_t *context)
+static void draw_score(bst_context_t *context)
 {
     char buffer[64];
     sfRectangleShape *rect = context->bst->score_rect;
@@ -85,7 +85,7 @@ static void draw_score(wolf_context_t *context)
     free(players);
 }
 
-static void draw_time(wolf_context_t *context, const char *buffer)
+static void draw_time(bst_context_t *context, const char *buffer)
 {
     sfFloatRect bounds;
 
@@ -99,7 +99,7 @@ static void draw_time(wolf_context_t *context, const char *buffer)
     sfRenderWindow_drawText(context->view->window, context->bst->text, NULL);
 }
 
-void bst_draw(wolf_context_t *context)
+void bst_draw(bst_context_t *context)
 {
     char buffer[32];
     float timestamp = context->bst->timelimit -

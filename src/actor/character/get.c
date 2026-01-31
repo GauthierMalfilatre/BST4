@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include <string.h>
 
-character_t *get_character(wolf_context_t *context, const char *name)
+character_t *get_character(bst_context_t *context, const char *name)
 {
     for (int i = 0; i < context->n_chars; i++) {
         if (!strcmp(context->characters[i]->name, name)) {

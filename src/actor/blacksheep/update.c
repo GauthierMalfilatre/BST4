@@ -6,11 +6,11 @@
 */
 #include "wolf.h"
 
-void update_blacksheep(wolf_context_t *context)
+void update_blacksheep(bst_context_t *context)
 {
     blacksheep_t *bs = context->bs;
 
-    if (context->mode != BS_GO || bs->is_carried) {
+    if ((context->mode != BS_GO && context->mode != RANKED) || bs->is_carried) {
         return;
     }
     bs->rect.left = 128 * (int)fmod((sfTime_asSeconds(

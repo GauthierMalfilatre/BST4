@@ -37,7 +37,14 @@ SRC = 	src/main.c \
 		src/actor/player/skills/skill_dash.c \
 		src/actor/player/skills/skill_invisible.c \
 		src/actor/player/skills/skill_steal.c \
-		src/actor/player/skills/skill_tp.c \
+		src/actor/player/skills/skill_boom.c \
+		src/actor/player/skills/skill_radiance.c \
+		src/actor/player/skills/get_nearest_player.c \
+		src/actor/player/buffs/add_buff.c \
+		src/actor/player/buffs/apply_buff.c \
+		src/actor/player/buffs/clear_buff.c \
+		src/actor/player/buffs/remove_buff.c \
+		src/actor/player/buffs/update_buff.c \
 		src/actor/player/move/spawn.c \
 		src/actor/player/move/keypad.c \
 		src/actor/player/move/gamepad.c \
@@ -47,6 +54,7 @@ SRC = 	src/main.c \
 		src/actor/player/move/move_player.c \
 		src/actor/player/move/shot.c \
 		src/actor/player/move/change_rect.c \
+		src/actor/player/move/bot.c \
 		src/actor/player/time/timer.c \
 		src/actor/bullet/linked.c \
 		src/actor/bullet/update_bullets.c \
@@ -79,6 +87,13 @@ SRC = 	src/main.c \
 		src/scenes/game/hill_mode/update.c \
 		src/scenes/game/hill_mode/render.c \
 		\
+		src/scenes/game/ranked_mode/init.c \
+		src/scenes/game/ranked_mode/destroy.c \
+		src/scenes/game/ranked_mode/event.c \
+		src/scenes/game/ranked_mode/timer.c \
+		src/scenes/game/ranked_mode/update.c \
+		src/scenes/game/ranked_mode/render.c \
+		\
 		src/parser/parser.c \
 		src/parser/wall/add_wall.c \
 		src/parser/wall/add_temp_wall.c \
@@ -100,6 +115,7 @@ SRC = 	src/main.c \
 		\
 		src/render/raycaster/player_render.c \
 		src/render/raycaster/project_on_screen.c \
+		src/render/raycaster/actor/minimap/minimap.c \
 		src/render/raycaster/actor/bullets/draw_bullets.c \
 		src/render/raycaster/actor/blacksheep/draw_blacksheep.c \
 		src/render/raycaster/actor/blacksheep/draw_bsp.c \
@@ -112,6 +128,7 @@ SRC = 	src/main.c \
 		src/render/raycaster/actor/player/draw_ceiling.c \
 		src/render/raycaster/actor/player/draw_ui.c \
 		src/render/raycaster/actor/player/ui/hp.c \
+		src/render/raycaster/actor/player/ui/allies.c \
 		src/render/raycaster/actor/player/ui/ammo.c \
 		src/render/raycaster/actor/player/ui/blacksheep.c \
 		src/render/raycaster/actor/player/ui/crosshair.c \
@@ -119,6 +136,7 @@ SRC = 	src/main.c \
 		src/render/raycaster/actor/player/ui/skill.c \
 		src/render/raycaster/framebuffer/clear_framebuffer.c \
 		src/render/raycaster/framebuffer/draw_rect.c \
+		src/render/raycaster/framebuffer/draw_line.c \
 		src/render/raycaster/framebuffer/draw_circle.c \
 		src/render/raycaster/framebuffer/draw_texture.c \
 		src/render/raycaster/framebuffer/draw_texture_cropped.c \
@@ -132,6 +150,7 @@ SRC = 	src/main.c \
 		src/utils/update_text.c \
 		src/utils/my_lstrcmp.c \
 		src/utils/draw_string.c \
+		src/utils/dict_bool.c \
 		\
 		src/scenes/menu/menu.c \
         src/scenes/menu/init_menu.c \
@@ -192,7 +211,7 @@ OBJDIR  = build
 OBJ     = $(SRC:.c=.o)
 OBJ     := $(patsubst src/%, $(OBJDIR)/%, $(OBJ))
 
-LIB     = -Llib/ -lmy
+LIB     = -Llib/ -lmy -ldict
 CSFML   = -lcsfml-audio -lcsfml-graphics -lcsfml-window -lcsfml-system -lm
 CFLAGS  += -iquote include -Wall -Wextra -O1 -g `sdl2-config --cflags`
 LDFLAGS += `sdl2-config --libs`
@@ -208,6 +227,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C lib/my/ > /dev/null
+	@$(MAKE) -C lib/dict/ > /dev/null
+	@cp lib/dict/libdict.a lib/libdict.a
 	@$(CC) -o $(NAME) $(OBJ) $(CSFML) $(LDFLAGS) $(LIB)
 	@echo "$(PURPLE)[SUCCESS]:$(GRAY1)\n  |-> Compilation completed!"
 	@echo "$(RED)[WARNING!!!]:$(YELLOW)\

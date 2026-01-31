@@ -17,7 +17,7 @@ static void update_text_slider(button_t *button, const char *text, int value,
     sfText_setString(button->text, str);
 }
 
-static int handle_slider(wolf_context_t *window, int button_index)
+static int handle_slider(bst_context_t *window, int button_index)
 {
     sfFloatRect bounds = GET_BOUNDS(button_index);
     float mouse_x = window->setting->mouse_pos.x;
@@ -31,7 +31,7 @@ static int handle_slider(wolf_context_t *window, int button_index)
     return ((mouse_x - bounds.left) / bounds.width) * 100.0f;
 }
 
-void resolution_slider(wolf_context_t *window)
+void resolution_slider(bst_context_t *window)
 {
     int percentage = handle_slider(window, B_RESOLUTION);
     int index = (percentage * resolution_count) / 100;
@@ -43,7 +43,7 @@ void resolution_slider(wolf_context_t *window)
     window->setting->setting[SETTING_RESOLUTION] = resolutions[index];
 }
 
-void framerate_slider(wolf_context_t *window)
+void framerate_slider(bst_context_t *window)
 {
     int percentage;
 
@@ -54,7 +54,7 @@ void framerate_slider(wolf_context_t *window)
     window->setting->setting[SETTING_FRAMERATE] = percentage;
 }
 
-void sound_slider(wolf_context_t *window)
+void sound_slider(bst_context_t *window)
 {
     int percentage;
 
@@ -64,7 +64,7 @@ void sound_slider(wolf_context_t *window)
     window->setting->setting[SETTING_SOUND] = percentage;
 }
 
-void music_slider(wolf_context_t *window)
+void music_slider(bst_context_t *window)
 {
     int percentage;
 
@@ -74,7 +74,7 @@ void music_slider(wolf_context_t *window)
     window->setting->setting[SETTING_MUSIC] = percentage;
 }
 
-void sensibilite_slider(wolf_context_t *window)
+void sensibilite_slider(bst_context_t *window)
 {
     int percentage;
 

@@ -9,8 +9,8 @@
 
     #define ERROR 84
     #define OK 0
-    #define NSCENE 7
-    #define PROGNAME "Feeria BST"
+    #define NSCENE 8
+    #define PROGNAME "Black Sheep Tournament 4th"
 
     #define CONFIG_FILE "./save/maps/arena.ray"
 
@@ -23,6 +23,9 @@
     #define FIRE_TIME 4000.f
     #define DEFIRE_TIME 4000.f
 
+    #define ATK_TEAM 0
+    #define DEF_TEAM 1
+
     #define MIN_SOUND 0
     #define MAX_SOUND 100
     #define PI 3.1415926535897932384626433832795028841f
@@ -31,6 +34,7 @@
     #define SQUARE(n) ((n) * (n))
     #define MAX(a, b) ((a) > (b) ? (a) : (b))
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
+    #define MILLI(n) ((n) * 1000.f)
     #define PLAYER_Z 50
     #define PLAYER_HFOV 90
     #define FLOOR_Z 5
@@ -46,6 +50,7 @@
     #define NWIN 6
 
     #include "my.h"
+    #include "dict.h"
     #include "../src/context/context.h"
     #include "../src/rain/rain.h"
     #include "../src/utils/utils.h"
@@ -58,9 +63,10 @@
     #include <stdio.h>
     #include <dirent.h>
     #include <string.h>
+    #include <SDL.h>
 
-void made_team_win(wolf_context_t *context, int team);
-void give_point_to_team(wolf_context_t *context, const int np);
+void made_team_win(bst_context_t *context, int team);
+void give_point_to_team(bst_context_t *context, const int np);
 void rumble_controller(player_t *player);
 
 #endif /* WOLF_3D_H */

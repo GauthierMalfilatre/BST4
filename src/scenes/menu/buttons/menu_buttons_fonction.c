@@ -10,7 +10,7 @@
 #include "scenes.h"
 #include "sound.h"
 
-void button_fonctions(wolf_context_t *window)
+void button_fonctions(bst_context_t *window)
 {
     for (int i = 0; i < nb_buttons_count; i++) {
         if (window->menu->buttons[i].is_select == 1) {
@@ -23,24 +23,24 @@ void button_fonctions(wolf_context_t *window)
     }
 }
 
-void start(wolf_context_t *window)
+void start(bst_context_t *window)
 {
     buttons_scenes[window->menu->id_scene].destroy(window->menu);
     window->menu->id_scene = START;
     buttons_scenes[window->menu->id_scene].init(window);
 }
 
-void credit(wolf_context_t *window)
+void credit(bst_context_t *window)
 {
     change_scene(CREDIT_SCENE, window);
 }
 
-void quit(wolf_context_t *window)
+void quit(bst_context_t *window)
 {
     sfRenderWindow_close(window->view->window);
 }
 
-void setting(wolf_context_t *window)
+void setting(bst_context_t *window)
 {
     change_scene(SETTING_SCENE, window);
 }

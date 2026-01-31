@@ -7,7 +7,7 @@
 #include "wolf.h"
 
 void move_player_to(player_t *player, sfVector2f base_pos,
-    sfVector2f target_pos, wolf_context_t *context)
+    sfVector2f target_pos, bst_context_t *context)
 {
     if (handle_slide_collision_radius(&base_pos, target_pos, context)
         == OK) {

@@ -18,7 +18,7 @@ static void *thread_render_player(void *arg)
     return NULL;
 }
 
-void destroy_render_multithread(wolf_context_t *context)
+void destroy_render_multithread(bst_context_t *context)
 {
     if (!context || !context->render_manager)
         return;
@@ -34,7 +34,7 @@ void destroy_render_multithread(wolf_context_t *context)
     context->render_manager = NULL;
 }
 
-char init_render_multithread(wolf_context_t *context)
+char init_render_multithread(bst_context_t *context)
 {
     context->render_manager = malloc(sizeof(render_manager_t));
     if (!context->render_manager) {
@@ -53,7 +53,7 @@ char init_render_multithread(wolf_context_t *context)
     return OK;
 }
 
-void multithread_render(wolf_context_t *context)
+void multithread_render(bst_context_t *context)
 {
     if (!context->render_manager) {
         return;

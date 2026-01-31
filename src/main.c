@@ -10,12 +10,12 @@
 
 void rumble_controller(player_t *player)
 {
-    return;
+    printf("rumble %s -> %i\n", player->name, player->device);
     if (player->sdl.h)
         SDL_HapticRumblePlay(player->sdl.h, 1.0f, 500);
 }
 
-void change_scene(int new_scene, wolf_context_t *window)
+void change_scene(int new_scene, bst_context_t *window)
 {
     if (new_scene >= 0 && new_scene < NSCENE) {
         scenes[window->current_scene].destroy(window);
@@ -45,7 +45,7 @@ void print_framerate(void)
         fps++;
 }
 
-static int wolf(wolf_context_t *context)
+static int wolf(bst_context_t *context)
 {
     while (sfRenderWindow_isOpen(context->view->window)) {
         while (sfRenderWindow_pollEvent(context->view->window, &context->evt))
@@ -59,7 +59,7 @@ static int wolf(wolf_context_t *context)
 
 int main(void)
 {
-    wolf_context_t *context = 0;
+    bst_context_t *context = 0;
     int exitcode = OK;
 
     if (create_context(&context, CONFIG_FILE) == ERROR) {

@@ -7,13 +7,13 @@
 #include "wolf.h"
 #include "../../../render.h"
 
-void draw_blacksheep(wolf_context_t *context, player_t *player)
+void draw_blacksheep(bst_context_t *context, player_t *player)
 {
     int x_out;
     double depth_out;
     blacksheep_t *bs = context->bs;
 
-    if (context->mode != BS_GO || bs->is_carried) {
+    if ((context->mode != BS_GO && context->mode != RANKED) || bs->is_carried) {
         return;
     }
     if (project_stuff_on_screen(player, bs->pos, &x_out, &depth_out) &&

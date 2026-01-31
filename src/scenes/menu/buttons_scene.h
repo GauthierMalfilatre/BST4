@@ -16,10 +16,10 @@ enum menu_scene_e {
 
 typedef struct menu_ref {
     unsigned int id;
-    void (*init)(wolf_context_t *);
-    void (*event)(wolf_context_t *);
-    void (*fonction)(wolf_context_t *);
-    void (*draw)(wolf_context_t *);
+    void (*init)(bst_context_t *);
+    void (*event)(bst_context_t *);
+    void (*fonction)(bst_context_t *);
+    void (*draw)(bst_context_t *);
     void (*destroy)(menu_t *);
 } menu_ref_t;
 

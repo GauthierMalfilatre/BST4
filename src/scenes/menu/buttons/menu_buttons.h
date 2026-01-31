@@ -24,16 +24,16 @@ typedef struct button_s {
     char is_hovered;
     char is_pressed;
     char is_select;
-    void (*button_fonc)(wolf_context_t *);
+    void (*button_fonc)(bst_context_t *);
 } button_t;
 
 // Button functions
-void start(wolf_context_t *window);
-void quit(wolf_context_t *window);
-void setting(wolf_context_t *window);
-void credit(wolf_context_t *window);
+void start(bst_context_t *window);
+void quit(bst_context_t *window);
+void setting(bst_context_t *window);
+void credit(bst_context_t *window);
 
-typedef void (*ptr_fonc_t)(wolf_context_t *window);
+typedef void (*ptr_fonc_t)(bst_context_t *window);
 
 // Function pointer array and button text
 static const ptr_fonc_t b_fonctions[] = {&start, &setting, &credit, &quit};

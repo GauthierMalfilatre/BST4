@@ -6,6 +6,7 @@
 */
 #ifndef UTILS_WOLF_3D_H
     #define UTILS_WOLF_3D_H
+    #include "dict.h"
 
 double get_norme(long double x1, long double y1, long double x2,
     long double y2);
@@ -20,5 +21,7 @@ int my_lstrcmp(const char *s1, const char *s2);
 
 void draw_string(sfRenderWindow *window, char *str, sfVector2f pos,
     sfVector2f size);
+
+char dict_bool(dict_t *dict, const char *key);
 
 #endif /* UTILS_WOLF_H */

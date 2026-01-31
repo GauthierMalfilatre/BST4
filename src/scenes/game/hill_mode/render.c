@@ -20,7 +20,7 @@ static int find_x(player_t *player)
         return posx - 10.f;
 }
 
-static void draw_rects(wolf_context_t *context)
+static void draw_rects(bst_context_t *context)
 {
     sfRectangleShape *rect = context->hill->bar_rect;
     int x;
@@ -61,7 +61,7 @@ static void sort_list(player_t **players, const int n)
     }
 }
 
-static void draw_score(wolf_context_t *context, sfRectangleShape *rect)
+static void draw_score(bst_context_t *context, sfRectangleShape *rect)
 {
     char buffer[64];
     sfVector2f pos;
@@ -84,7 +84,7 @@ static void draw_score(wolf_context_t *context, sfRectangleShape *rect)
     free(players);
 }
 
-void hill_draw(wolf_context_t *context)
+void hill_draw(bst_context_t *context)
 {
     char buffer[32];
     float timestamp = context->hill->timelimit -

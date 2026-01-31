@@ -8,7 +8,7 @@
 #include "menu.h"
 #include "buttons_scene.h"
 
-int menu_init(wolf_context_t *window)
+int menu_init(bst_context_t *window)
 {
     window->menu = malloc(sizeof(menu_t));
     if (!window->menu)
@@ -22,12 +22,12 @@ int menu_init(wolf_context_t *window)
     return OK;
 }
 
-void menu_update(wolf_context_t *window)
+void menu_update(bst_context_t *window)
 {
     buttons_scenes[window->menu->id_scene].fonction(window);
 }
 
-void menu_event(wolf_context_t *window)
+void menu_event(bst_context_t *window)
 {
     if (window->evt.type == sfEvtClosed) {
         sfRenderWindow_close(window->view->window);
@@ -36,7 +36,7 @@ void menu_event(wolf_context_t *window)
     buttons_scenes[window->menu->id_scene].event(window);
 }
 
-void menu_draw(wolf_context_t *window)
+void menu_draw(bst_context_t *window)
 {
     sfRenderWindow_clear(window->view->window, sfGreen);
     sfRenderWindow_drawSprite(window->view->window,
@@ -46,7 +46,7 @@ void menu_draw(wolf_context_t *window)
     buttons_scenes[window->menu->id_scene].draw(window);
 }
 
-void menu_destroy(wolf_context_t *window)
+void menu_destroy(bst_context_t *window)
 {
     if (!window->menu)
         return;

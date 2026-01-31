@@ -8,14 +8,14 @@
 #include "scenes.h"
 #include "sound.h"
 
-void give_point_to_team(wolf_context_t *context, const int np)
+void give_point_to_team(bst_context_t *context, const int np)
 {
     for (int i = 0; i < context->n_players; i++) {
         context->players[i]->score += np;
     }
 }
 
-void made_team_win(wolf_context_t *context, int team)
+void made_team_win(bst_context_t *context, int team)
 {
     context->team_winner = team;
     if (team) {

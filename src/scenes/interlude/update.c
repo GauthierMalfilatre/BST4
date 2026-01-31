@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-void interlude_update(wolf_context_t *context)
+void interlude_update(bst_context_t *context)
 {
     if (!context) {
         return;

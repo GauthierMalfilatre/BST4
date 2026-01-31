@@ -27,7 +27,7 @@ static char read_value(FILE *fp, const char *key, unsigned int *out)
     return found;
 }
 
-static void load_sound(FILE *fd, wolf_context_t *context)
+static void load_sound(FILE *fd, bst_context_t *context)
 {
     if (!read_value(fd, "Sound", &context->w_setting[W_SOUND]) ||
         context->w_setting[W_SOUND] > MAX_SOUND)
@@ -37,7 +37,7 @@ static void load_sound(FILE *fd, wolf_context_t *context)
         context->w_setting[W_MUSIC] = 100;
 }
 
-char load_settings(wolf_context_t *context)
+char load_settings(bst_context_t *context)
 {
     FILE *fd = fopen(SETTING_PATH, "r");
 

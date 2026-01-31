@@ -22,25 +22,25 @@ typedef struct menu_s {
 } menu_t;
 
 // Initialization functions
-void init_menu_background(wolf_context_t *window);
-void init_menu_buttons(wolf_context_t *window);
-void init_menu_text(wolf_context_t *window);
-void init_start_buttons(wolf_context_t *window);
+void init_menu_background(bst_context_t *window);
+void init_menu_buttons(bst_context_t *window);
+void init_menu_text(bst_context_t *window);
+void init_start_buttons(bst_context_t *window);
 
 // Draw fonctions
-void draw_buttons(wolf_context_t *window);
-void draw_start_buttons(wolf_context_t *window);
+void draw_buttons(bst_context_t *window);
+void draw_start_buttons(bst_context_t *window);
 
 // Destroy fonctions
 void destroy_all_buttons(menu_t *menu);
 void destroy_all_start_buttons(menu_t *menu);
 
 // Event fonctions
-void menu_handle_mouse(wolf_context_t *window);
-void start_menu_handle_mouse(wolf_context_t *window);
+void menu_handle_mouse(bst_context_t *window);
+void start_menu_handle_mouse(bst_context_t *window);
 
 // Update fonctions
-void button_fonctions(wolf_context_t *window);
-void button_start_fonctions(wolf_context_t *window);
+void button_fonctions(bst_context_t *window);
+void button_start_fonctions(bst_context_t *window);
 
 #endif // MENU_H

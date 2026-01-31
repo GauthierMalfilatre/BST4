@@ -24,7 +24,7 @@ static int determine_device(const char *device, player_t *player)
     return -1;
 }
 
-int add_player_p(char **warray, wolf_context_t *context)
+int add_player_p(char **warray, bst_context_t *context)
 {
     player_t *player = (player_t *) 0;
 

@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-void player_timer(player_t *player, wolf_context_t *context)
+void player_timer(player_t *player, bst_context_t *context)
 {
     player->delta_t = sfTime_asMilliseconds(sfClock_restart(player->clock));
     if (player->cooldowns.till_competence > 0.f) {

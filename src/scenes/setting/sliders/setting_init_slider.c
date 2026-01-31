@@ -51,7 +51,7 @@ static sfRectangleShape *create_slider_shape(sfVector2f slider_pos,
     return slider_button;
 }
 
-void init_setting_sliders(wolf_context_t *window)
+void init_setting_sliders(bst_context_t *window)
 {
     sfFloatRect b_shape;
     sfVector2f position;

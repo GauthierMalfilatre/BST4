@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-static void reset_bs(player_t *dst, wolf_context_t *ctx)
+static void reset_bs(player_t *dst, bst_context_t *ctx)
 {
     if (ctx->bs->is_carried == dst) {
         drop_blacksheep(ctx);
@@ -17,7 +17,7 @@ static void reset_bs(player_t *dst, wolf_context_t *ctx)
     }
 }
 
-static player_t *get_good_next(wolf_context_t *ctx, player_t *player,
+static player_t *get_good_next(bst_context_t *ctx, player_t *player,
     player_t *killer)
 {
     for (int i = 0; i < ctx->n_players; i++) {
@@ -29,7 +29,7 @@ static player_t *get_good_next(wolf_context_t *ctx, player_t *player,
     return killer;
 }
 
-static void resolve_old_branches(wolf_context_t *ctx, player_t *dst)
+static void resolve_old_branches(bst_context_t *ctx, player_t *dst)
 {
     for (int i = 0; i < ctx->n_players; i++) {
         if (ctx->players[i] == dst) {
@@ -75,7 +75,7 @@ static void resolve_message(player_t *src, player_t *dst)
     }
 }
 
-void kill(wolf_context_t *ctx, player_t *dst, player_t *src)
+void kill(bst_context_t *ctx, player_t *dst, player_t *src)
 {
     stop_all_voicelines_except_death(dst);
     dst->character->endskill(ctx, dst, sfTrue);
@@ -92,7 +92,7 @@ void kill(wolf_context_t *ctx, player_t *dst, player_t *src)
     dst->cooldowns.till_respawn = ((ctx->mode == BS_GO) ? -1.f : 10000.f);
 }
 
-void deal_damage_to_player(wolf_context_t *ctx, player_t *dst, player_t *src)
+void deal_damage_to_player(bst_context_t *ctx, player_t *dst, player_t *src)
 {
     if (src->equipe == dst->equipe)
         return;

@@ -55,7 +55,7 @@ static void update_mode_button_text(menu_t *menu, modee_t mode)
     sfText_setString(menu->buttons[B_MODE].text, name_mode[mode]);
 }
 
-void init_start_buttons(wolf_context_t *window)
+void init_start_buttons(bst_context_t *window)
 {
     unsigned int size = window->view->win_size.y * 0.07f;
     unsigned int pos_width = window->view->win_size.x / 2;

@@ -14,7 +14,7 @@ static sfBool is_the_good_bsp(blacksheep_t *bs, bsp_t *bsp)
         bsp->a.y && bs->pos.y < bsp->b.y);
 }
 
-static void draw_point_bsp_ui(player_t *player, wolf_context_t *context, int i,
+static void draw_point_bsp_ui(player_t *player, bst_context_t *context, int i,
     int xout)
 {
     char buffer[8];
@@ -28,7 +28,7 @@ static void draw_point_bsp_ui(player_t *player, wolf_context_t *context, int i,
         sfRed);
 }
 
-void draw_directions(wolf_context_t *context, player_t *player)
+void draw_directions(bst_context_t *context, player_t *player)
 {
     int xout;
     double d_out;

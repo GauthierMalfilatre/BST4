@@ -23,12 +23,12 @@ static int find_x(sfVector2f collision, wall_t wall, int wall_tex_w)
     return tex_x;
 }
 
-static sfImage *get_good_wall(wolf_context_t *ray, wall_t wall)
+static sfImage *get_good_wall(bst_context_t *ray, wall_t wall)
 {
     return get_texture_from_type(ray->textures, wall.type)->image;
 }
 
-void draw_wall(wolf_context_t *ray, player_t *player, cast_ray_params_t p)
+void draw_wall(bst_context_t *ray, player_t *player, cast_ray_params_t p)
 {
     sfImage *image = get_good_wall(ray, p.wall);
     int wall_heigth;

@@ -8,7 +8,7 @@
 #include "wolf.h"
 #include "sound.h"
 
-void fire_sheep(player_t *player, wolf_context_t *context)
+void fire_sheep(player_t *player, bst_context_t *context)
 {
     if (context->bs->is_carried != player) {
         return;
@@ -27,14 +27,14 @@ void fire_sheep(player_t *player, wolf_context_t *context)
     }
 }
 
-void eteint_le_noir_mouton(wolf_context_t *context)
+void eteint_le_noir_mouton(bst_context_t *context)
 {
     context->bs->firing = 0.f;
     context->bs->is_fired = 0;
     context->bs->diffusing = 0;
 }
 
-void defire_sheep(player_t *player, wolf_context_t *context)
+void defire_sheep(player_t *player, bst_context_t *context)
 {
     if (context->bs->diffusing != player || !player->equipe ||
         !context->bs->is_fired) {

@@ -38,7 +38,7 @@ static sfBool select_condition(player_t *player)
     return sfFalse;
 }
 
-static void switch_fire(player_t *player, wolf_context_t *context)
+static void switch_fire(player_t *player, bst_context_t *context)
 {
     if (context->bs->is_fired || !is_in_point(player, context->cmap->bsp)) {
         return;
@@ -50,7 +50,7 @@ static void switch_fire(player_t *player, wolf_context_t *context)
     }
 }
 
-static void switch_defuse(player_t *player, wolf_context_t *context)
+static void switch_defuse(player_t *player, bst_context_t *context)
 {
     if (context->bs->is_fired == 0) {
         return;
@@ -72,9 +72,9 @@ static void switch_defuse(player_t *player, wolf_context_t *context)
     }
 }
 
-void interact_sheep(player_t *player, wolf_context_t *context)
+void interact_sheep(player_t *player, bst_context_t *context)
 {
-    if (context->mode != BS_GO) {
+    if (context->mode != BS_GO && context->mode != RANKED) {
         return;
     }
     if (player->equipe == 0 && context->bs->is_carried == player) {

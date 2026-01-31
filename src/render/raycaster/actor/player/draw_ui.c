@@ -9,7 +9,7 @@
 #include "scenes.h"
 #include "../../framebuffer/font/wolf_font.h"
 
-static void draw_action_bar(player_t *player, wolf_context_t *context)
+static void draw_action_bar(player_t *player, bst_context_t *context)
 {
     char buffer[32];
 
@@ -31,7 +31,7 @@ static void draw_action_bar(player_t *player, wolf_context_t *context)
         }
 }
 
-void draw_ui(wolf_context_t *context, player_t *player)
+void draw_ui(bst_context_t *context, player_t *player)
 {
     draw_cursor(player);
     draw_hps(player);
@@ -39,9 +39,11 @@ void draw_ui(wolf_context_t *context, player_t *player)
     draw_ammo(player);
     draw_skill(player);
     render_messages(player);
-    if (context->current_scene != GAME_BST_SCENE)
+    if (context->current_scene != GAME_BST_SCENE && context->current_scene != GAME_RANKED_SCENE)
         return;
     draw_rain_drops(context->bst->rain, player, player->delta_t);
     draw_blacksheep_ui(player, context);
     draw_directions(context, player);
+    draw_allies(context, player);
+    draw_minimap(context, player);
 }

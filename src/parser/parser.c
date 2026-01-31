@@ -23,7 +23,7 @@ const point_parse_t parse_tab[PARSING_ACTIONS] = {
     {"@require", &builtin_require},
 };
 
-static int find_action(wolf_context_t *context, char *buffer)
+static int find_action(bst_context_t *context, char *buffer)
 {
     char **warray = my_str_to_word_array(buffer);
 
@@ -39,7 +39,7 @@ static int find_action(wolf_context_t *context, char *buffer)
     return OK;
 }
 
-int parse_ray_file(wolf_context_t *context, const char *path)
+int parse_ray_file(bst_context_t *context, const char *path)
 {
     FILE *fp = fopen(path, "r");
     char *buffer = (char *) 0;

@@ -48,7 +48,7 @@ static button_t create_button(sfVector2f position, sfVector2f size,
     return btn;
 }
 
-void init_menu_buttons(wolf_context_t *window)
+void init_menu_buttons(bst_context_t *window)
 {
     unsigned int size = window->view->win_size.y * 0.07f;
     unsigned int pos_width = window->view->win_size.x / 2;

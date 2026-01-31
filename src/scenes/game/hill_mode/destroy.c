@@ -8,7 +8,7 @@
 #include "wolf.h"
 #include "../../../render/render.h"
 
-void hill_destroy(wolf_context_t *context)
+void hill_destroy(bst_context_t *context)
 {
     if (!context->hill) {
         return;

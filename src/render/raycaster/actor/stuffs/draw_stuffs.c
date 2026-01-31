@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include "../../../render.h"
 
-void draw_stuffs(wolf_context_t *context, player_t *player)
+void draw_stuffs(bst_context_t *context, player_t *player)
 {
     int x_out;
     double depth_out;

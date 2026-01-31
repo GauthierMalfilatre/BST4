@@ -25,11 +25,11 @@ static void draw_life_bleeding(player_t *player, float first_step,
 {
     draw_rect(player, (sfVector4i_t){player->param.size.x / 2 - 100 + 4,
         player->param.size.y - 50 + 4, (200 - 8) * (first_step * 1 /
-        player->character->maxhp), 30 - 8}, color, UX_CHN);
+        player->infos.maxhp), 30 - 8}, color, UX_CHN);
     if (!player->bleeding.dps)
         return;
     draw_rect(player, (sfVector4i_t){player->param.size.x / 2 - 100 + 4 +
-        (200 - 8) * (first_step * 1 / player->character->maxhp), player->param.size.y - 50 + 4,
+        (200 - 8) * (first_step * 1 / player->infos.maxhp), player->param.size.y - 50 + 4,
         (200 - 8) * ((player->infos.life - first_step) * 1 / player->
         character->maxhp), 30 - 8}, sfColor_fromRGB(138, 3, 3), UX_CHN);
 }
@@ -37,9 +37,9 @@ static void draw_life_bleeding(player_t *player, float first_step,
 static void draw_life_healing(player_t *player)
 {
     draw_rect(player, (sfVector4i_t){player->param.size.x / 2 - 100 + 4 +
-        (200 - 8) * (player->infos.life * 1 / player->character->maxhp), player->param.size.y -
+        (200 - 8) * (player->infos.life * 1 / player->infos.maxhp), player->param.size.y -
         50 + 4, (200 - 8) * ((player->healing.target_life -
-        player->infos.life) * 1 / player->character->maxhp), 30 - 8}, sfGreen, UX_CHN);
+        player->infos.life) * 1 / player->infos.maxhp), 30 - 8}, sfGreen, UX_CHN);
 }
 
 static void draw_hps_numbers(player_t *player)
@@ -53,12 +53,12 @@ static void draw_hps_numbers(player_t *player)
 
 void draw_hps(player_t *player)
 {
-    sfColor color = player->infos.life > player->character->maxhp / 2.f ?
+    sfColor color = player->infos.life > player->infos.maxhp / 2.f ?
         sfWhite : sfColor_fromRGB(255, 200, 0);
     float first_step = player->bleeding.dps ?
         player->bleeding.target_life : player->infos.life;
 
-    if (player->infos.life < player->character->maxhp * 1 / 10.f)
+    if (player->infos.life < player->infos.maxhp * 1 / 10.f)
         color = sfRed;
     draw_cadre(player);
     draw_life_bleeding(player, first_step, color);

@@ -7,7 +7,7 @@
 
 #include "menu.h"
 
-void init_menu_background(wolf_context_t *window)
+void init_menu_background(bst_context_t *window)
 {
     sfVector2u tex_size;
     float scale_x;
@@ -25,7 +25,7 @@ void init_menu_background(wolf_context_t *window)
         (sfVector2f){scale_x, scale_y});
 }
 
-void init_menu_text(wolf_context_t *window)
+void init_menu_text(bst_context_t *window)
 {
     sfFloatRect bounds;
     sfText *text;

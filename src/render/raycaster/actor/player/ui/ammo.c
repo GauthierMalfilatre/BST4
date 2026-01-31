@@ -11,11 +11,11 @@
 void draw_ammo(player_t *player)
 {
     sfColor color = sfWhite;
-    int w = (200) * (player->infos.ammo * (1.f / player->character->ammo));
+    int w = (200) * (player->infos.ammo * (1.f / player->infos.max_ammo));
 
-    if (player->infos.ammo < player->character->ammo / 2) {
+    if (player->infos.ammo < player->infos.max_ammo / 2) {
         color = sfColor_fromRGB(255, 200, 0);
-        if (player->infos.ammo < player->character->ammo * 1 / 10) {
+        if (player->infos.ammo < player->infos.max_ammo * 1 / 10) {
             color = sfRed;
         }
     }

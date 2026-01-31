@@ -54,7 +54,7 @@ static char *load_credits_text(const char *filepath)
     return buffer;
 }
 
-void init_credit_background(wolf_context_t *window)
+void init_credit_background(bst_context_t *window)
 {
     sfVector2u tex_size;
     float scale_x;
@@ -72,7 +72,7 @@ void init_credit_background(wolf_context_t *window)
         (sfVector2f){scale_x, scale_y});
 }
 
-void init_credit_text(wolf_context_t *window)
+void init_credit_text(bst_context_t *window)
 {
     char *text = load_credits_text("./assets/credit_assets/credit.txt");
     sfFloatRect bounds;

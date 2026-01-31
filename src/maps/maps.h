@@ -7,6 +7,7 @@
 #ifndef MAP_WOLF_3D_H
     #define MAP_WOLF_3D_H
     #include <SFML/System.h>
+    #include "wolf.h"
 
 typedef struct wall_s wall_t;
 typedef struct bullet_s bullet_t;

@@ -11,7 +11,7 @@ static int is_valid(const char *str)
     return (!my_lstrcmp(str, "id") || !my_lstrcmp(str, "name"));
 }
 
-static int ntext_id(wolf_context_t *context, char *id)
+static int ntext_id(bst_context_t *context, char *id)
 {
     int i = 0;
 
@@ -26,7 +26,7 @@ static int ntext_id(wolf_context_t *context, char *id)
     return i;
 }
 
-static int ntext_name(wolf_context_t *context, char *id)
+static int ntext_name(bst_context_t *context, char *id)
 {
     int i = 0;
 
@@ -46,10 +46,10 @@ static void handle_unique(char **warray, int *i, int *is_unique)
     }
 }
 
-int check_if_texture_exists(char **warray, wolf_context_t *context, int *err)
+int check_if_texture_exists(char **warray, bst_context_t *context, int *err)
 {
     int is_unique = 0;
-    int (*check)(wolf_context_t *, char *);
+    int (*check)(bst_context_t *, char *);
     int a = 0;
     int i = 0;
 

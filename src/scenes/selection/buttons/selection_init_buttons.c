@@ -78,12 +78,12 @@ static button_t create_button(sfVector2f position, sfVector2f size,
     return btn;
 }
 
-static sfColor getclr(wolf_context_t *w, int i)
+static sfColor getclr(bst_context_t *w, int i)
 {
     return team_colors[w->players[i]->equipe];
 }
 
-void init_selection_buttons(wolf_context_t *w)
+void init_selection_buttons(bst_context_t *w)
 {
     float cy = w->view->win_size.y * 0.4f;
     float b[2] = {w->view->win_size.x * 0.15f, w->view->win_size.y * 0.6f};
@@ -108,7 +108,7 @@ void init_selection_buttons(wolf_context_t *w)
     }
 }
 
-void create_bottom_selection(wolf_context_t *w)
+void create_bottom_selection(bst_context_t *w)
 {
     sfVector2f size = {w->view->win_size.x * 0.07f,
         w->view->win_size.y * 0.07f};
@@ -132,7 +132,7 @@ void create_bottom_selection(wolf_context_t *w)
     w->selection->buttons[start_idx].button_fonc = b_fonctions[START_INDEX];
 }
 
-void create_arrow_buttons(wolf_context_t *w)
+void create_arrow_buttons(bst_context_t *w)
 {
     sfVector2f rect_pos = sfRectangleShape_getPosition(w->selection->rect_map);
     sfVector2f rect_size = sfRectangleShape_getSize(w->selection->rect_map);

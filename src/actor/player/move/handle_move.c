@@ -33,7 +33,7 @@ static void make_offsets(sfVector2f out[5])
     out[4] = (sfVector2f){0, -PLAYER_RADIUS};
 }
 
-static int detect_collision(wolf_context_t *context,
+static int detect_collision(bst_context_t *context,
     sfVector2f from, sfVector2f to)
 {
     sfVector2f intersection = {0.0 / 0.0, 0.0 / 0.0};
@@ -49,7 +49,7 @@ static int detect_collision(wolf_context_t *context,
 }
 
 static int try_project_move(sfVector2f *move,
-    sfVector2f *pos, sfVector2f *target, wolf_context_t *context)
+    sfVector2f *pos, sfVector2f *target, bst_context_t *context)
 {
     sfVector2f offsets[5];
     sfVector2f offset_pos;
@@ -73,7 +73,7 @@ static int try_project_move(sfVector2f *move,
 }
 
 static int check_after_projection(sfVector2f *pos,
-    sfVector2f *projected, wolf_context_t *ctx)
+    sfVector2f *projected, bst_context_t *ctx)
 {
     sfVector2f offsets[5];
     sfVector2f offset_pos;
@@ -92,7 +92,7 @@ static int check_after_projection(sfVector2f *pos,
 }
 
 int handle_slide_collision_radius(sfVector2f *pos,
-    sfVector2f target, wolf_context_t *ctx)
+    sfVector2f target, bst_context_t *ctx)
 {
     sfVector2f move;
     sfVector2f projected;

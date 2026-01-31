@@ -24,7 +24,7 @@ static void sort_list(player_t **players, const int n)
     }
 }
 
-static void check_endgame(wolf_context_t *context)
+static void check_endgame(bst_context_t *context)
 {
     player_t **player;
 
@@ -41,7 +41,7 @@ static void check_endgame(wolf_context_t *context)
     }
 }
 
-void endskill_h(wolf_context_t *context, player_t *player)
+void endskill_h(bst_context_t *context, player_t *player)
 {
     if (!player->character || !player->character->endskill) {
         return;
@@ -49,9 +49,10 @@ void endskill_h(wolf_context_t *context, player_t *player)
     player->character->endskill(context, player, sfFalse);
 }
 
-void update_player_h(wolf_context_t *context, player_t *player)
+void update_player_h(bst_context_t *context, player_t *player)
 {
     player->time(player, context);
+    update_buff(context, player);
     if (player->device != -1 && player->infos.life > 0.f) {
         player_resolve_bleeding(player, context);
         player->move(context, player);
@@ -59,7 +60,7 @@ void update_player_h(wolf_context_t *context, player_t *player)
     }
 }
 
-void hill_update(wolf_context_t *context)
+void hill_update(bst_context_t *context)
 {
     if (!context || !context->hill ||
         context->current_scene != GAME_HILL_SCENE)

@@ -10,11 +10,35 @@
     #define PLAYER_BASE_ATK 6
     #include <SDL.h>
 
-typedef struct wolf_context_s wolf_context_t;
+typedef struct wolf_context_s bst_context_t;
 typedef struct textures_s textures_t;
 typedef struct bullet_s bullet_t;
 typedef struct blood_s blood_t;
 typedef struct player_s player_t;
+
+typedef enum buff_e {
+    BUFF_ATK,
+    BUFF_HP,
+    BUFF_SPD,
+    BUFF_ATKSPD,    
+    BUFF_AMMO,
+} buff_type_t;
+
+typedef struct buff_s {
+    buff_type_t type;
+    char is_first_time;
+    long double value;
+    long double duration;  // In milliseconds
+    struct buff_s *next;
+    struct buff_s *prev;
+} buff_t;
+
+void add_buff(buff_t **head, buff_type_t type, long double value,
+    long double duration);
+void update_buff(bst_context_t *context, player_t *player);
+void apply_buff(player_t *player, buff_t *buff);
+void remove_buff(buff_t **head, buff_t *buff);
+int clear_buffs(buff_t *head);
 
 typedef enum rdi_e {
     DUCKING,
@@ -49,9 +73,12 @@ typedef struct draw_utils_s {
 
 typedef struct game_meta_s {
     double life;
+    double maxhp;
     int ammo;
-    int atk;
+    int max_ammo;
+    double atk;
     float atkspd;
+    float spd;
     rdi_t rdi;
     int gamepad_is_ducking;
 } game_meta_t;
@@ -84,7 +111,7 @@ typedef struct character_s {
     float cooldown_till_shot;
 } character_t;
 
-character_t *get_character(wolf_context_t *context, const char *name);
+character_t *get_character(bst_context_t *context, const char *name);
 int destroy_characters(character_t **characters, const int n_characters);
 
 typedef struct cooldowns_s {
@@ -142,6 +169,7 @@ typedef struct sdl_config_s {
 } sdl_config_t;
 
 typedef struct player_s {
+    sfBool is_bot;
     sfUint8 *framebuffer;
     double *zbuffer;
     view_param_t param;
@@ -167,8 +195,12 @@ typedef struct player_s {
     float hitbox_radius;
     sfVector2i kd;
     int score;
+
+    // Buffs, debuffs, healing, bleeding, ...
+    buff_t *buff;
     bleeding_t bleeding;
     healing_t healing;
+
     int is_endskill_used;
     int is_bleeding_others;
     blood_t *blood;
@@ -179,63 +211,72 @@ typedef struct player_s {
     int is_left_hand;
     messages_t *messages;
     sdl_config_t sdl;
+    dict_t *dict;
 } player_t;
 
 void init_sdl(player_t *player);
 
-int init_player_voicelines(player_t *player, wolf_context_t *context);
+int init_player_voicelines(player_t *player, bst_context_t *context);
 
-int skill_heal(wolf_context_t *context, player_t *self);
-int skill_heal_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_wall(wolf_context_t *context, player_t *self);
-int skill_wall_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_atk(wolf_context_t *context, player_t *self);
-int skill_atk_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_bleeding(wolf_context_t *context, player_t *self);
-int skill_bleeding_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_dash(wolf_context_t *context, player_t *self);
-int skill_dash_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_invisible(wolf_context_t *context, player_t *self);
-int skill_invisible_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_steal(wolf_context_t *context, player_t *self);
-int skill_steal_end(wolf_context_t *context, player_t *self, sfBool force);
-int skill_tp(wolf_context_t *context, player_t *self);
-int skill_tp_end(wolf_context_t *context, player_t *self, sfBool force);
+player_t *get_nearest_ally(player_t **players, player_t *player, int i);
+player_t *get_nearest_enemy(player_t **players, player_t *player, int i);
+
+int skill_heal(bst_context_t *context, player_t *self);
+int skill_heal_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_wall(bst_context_t *context, player_t *self);
+int skill_wall_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_atk(bst_context_t *context, player_t *self);
+int skill_atk_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_bleeding(bst_context_t *context, player_t *self);
+int skill_bleeding_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_dash(bst_context_t *context, player_t *self);
+int skill_dash_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_invisible(bst_context_t *context, player_t *self);
+int skill_invisible_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_steal(bst_context_t *context, player_t *self);
+int skill_steal_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_boom(bst_context_t *context, player_t *self);
+int skill_boom_end(bst_context_t *context, player_t *self, sfBool force);
+int skill_radiance(bst_context_t *context, player_t *self);
+int skill_radiance_end(bst_context_t *context, player_t *self, sfBool force);
 
 int create_player(player_t **player, const int i, sfVideoMode v);
 
 int create_players(player_t ***players, const int n_players);
 int destroy_players(player_t **players, const int n_players);
 
-void player_timer(player_t *player, wolf_context_t *context);
+void player_timer(player_t *player, bst_context_t *context);
 
-void player_movement_keyboard(wolf_context_t *data, player_t *player);
-void player_movement_gamepad(wolf_context_t *context, player_t *player);
+void player_movement_keyboard(bst_context_t *data, player_t *player);
+void player_movement_gamepad(bst_context_t *context, player_t *player);
+
+/* AI */
+void player_movement_ai(bst_context_t *context, player_t *player);
 
 void reload(player_t *player);
-void shot(wolf_context_t *context, player_t *player);
+void shot(bst_context_t *context, player_t *player);
 int change_rect(player_t *player);
 
 char player_select_keyboard(player_t *player, int *index, int *dindex);
 char player_select_gamepad(player_t *player, int *index, int *dindex);
 
 void move_player_to(player_t *player, sfVector2f base_pos,
-    sfVector2f target_pos, wolf_context_t *context);
+    sfVector2f target_pos, bst_context_t *context);
 
 int handle_slide_collision_radius(sfVector2f *pos,
-    sfVector2f target, wolf_context_t *ctx);
+    sfVector2f target, bst_context_t *ctx);
 
-void player_resolve_bleeding(player_t *player, wolf_context_t *context);
-void deal_damage_to_player(wolf_context_t *ctx, player_t *dst, player_t *src);
+void player_resolve_bleeding(player_t *player, bst_context_t *context);
+void deal_damage_to_player(bst_context_t *ctx, player_t *dst, player_t *src);
 
-int spawn(player_t *player, wolf_context_t *context);
+int spawn(player_t *player, bst_context_t *context);
 
 int heal_player(player_t *self, const float ammount);
 
-void interact_sheep(player_t *player, wolf_context_t *context);
-void fire_sheep(player_t *player, wolf_context_t *context);
-void defire_sheep(player_t *player, wolf_context_t *context);
-void eteint_le_noir_mouton(wolf_context_t *context);
+void interact_sheep(player_t *player, bst_context_t *context);
+void fire_sheep(player_t *player, bst_context_t *context);
+void defire_sheep(player_t *player, bst_context_t *context);
+void eteint_le_noir_mouton(bst_context_t *context);
 
 typedef struct bullet_s {
     player_t *player;
@@ -251,7 +292,7 @@ void add_bullet(bullet_t **head, player_t *player);
 void destroy_bullet(bullet_t **head, bullet_t *self);
 void destroy_bullets(bullet_t *head);
 
-void udpdate_bullets(wolf_context_t *context);
+void udpdate_bullets(bst_context_t *context);
 
 typedef struct stuffs_s {
     int type;
@@ -274,10 +315,10 @@ typedef struct blacksheep_s {
 } blacksheep_t;
 
 int destroy_blacksheep(blacksheep_t *blacksheep);
-blacksheep_t *create_blacksheep(wolf_context_t *context);
-int spawn_blacksheep(wolf_context_t *context);
-void update_blacksheep(wolf_context_t *context);
+blacksheep_t *create_blacksheep(bst_context_t *context);
+int spawn_blacksheep(bst_context_t *context);
+void update_blacksheep(bst_context_t *context);
 
-void drop_blacksheep(wolf_context_t *context);
+void drop_blacksheep(bst_context_t *context);
 
 #endif /* ACTOR_WOLF_H */

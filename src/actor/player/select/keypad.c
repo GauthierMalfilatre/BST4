@@ -14,11 +14,11 @@ char player_select_keyboard(player_t *player, int *index, int *dindex)
         (*index)++;
         return 1;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyA) || sfKeyboard_isKeyPressed(71)) {
+    if (sfKeyboard_isKeyPressed(sfKeyQ) || sfKeyboard_isKeyPressed(71)) {
         (*index)--;
         return 1;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyW) || sfKeyboard_isKeyPressed(sfKeyUp)) {
+    if (sfKeyboard_isKeyPressed(sfKeyZ) || sfKeyboard_isKeyPressed(sfKeyUp)) {
         (*dindex)--;
         return 2;
     }

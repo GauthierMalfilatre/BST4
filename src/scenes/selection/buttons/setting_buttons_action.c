@@ -35,7 +35,7 @@ static void check_presse_buttons(selection_t *selection, int total_buttons)
     }
 }
 
-static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
+static void check_hover_buttons(bst_context_t *window, sfVector2f mouse_pos)
 {
     button_t *btn;
     char change_cursor = 0;
@@ -57,7 +57,7 @@ static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
         window->view->cursor_hand : window->view->cursor_arrow);
 }
 
-void selection_handle_mouse(wolf_context_t *window)
+void selection_handle_mouse(bst_context_t *window)
 {
     int total_buttons = window->n_players + 4;
 

@@ -8,7 +8,7 @@
 #include "wolf.h"
 #include "../../../render/render.h"
 
-static void walls(wolf_context_t *context)
+static void walls(bst_context_t *context)
 {
     if (context->bst->is_temp_wall) {
         context->bst->is_temp_wall = sfFalse;
@@ -22,7 +22,7 @@ static void walls(wolf_context_t *context)
     }    
 }
 
-void bst_destroy(wolf_context_t *context)
+void bst_destroy(bst_context_t *context)
 {
     if (!context->bst) {
         return;

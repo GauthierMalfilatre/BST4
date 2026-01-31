@@ -21,6 +21,6 @@ void draw_skill(player_t *player)
     } else {
         sprintf(buffer, "%d", (int)(player->cooldowns.till_competence / 1000.f));
         draw_text(player, buffer,
-            (sfVector4i_t){540, 385, 6, UX_CHN}, sfRed);
+            (sfVector4i_t){570 - (strlen(buffer) / 2.f) * (6.f * 5.f), 385, 6, UX_CHN}, sfRed);
     }
 }

@@ -11,11 +11,11 @@
 #include "scenes.h"
 #include <time.h>
 
-static int init_context_struct(wolf_context_t *context)
+static int init_context_struct(bst_context_t *context)
 {
     if (!context)
         return ERROR;
-    memset(context, 0, sizeof(wolf_context_t));
+    memset(context, 0, sizeof(bst_context_t));
     if (load_settings(context) == ERROR) {
         fprintf(stderr, "Failed to load settings.\n");
         return ERROR;
@@ -28,7 +28,7 @@ static int init_context_struct(wolf_context_t *context)
     return OK;
 }
 
-static void init_post_parse_data(wolf_context_t *context)
+static void init_post_parse_data(bst_context_t *context)
 {
     srand(time(NULL));
     context->is_alt = 0;
@@ -43,11 +43,11 @@ static void init_post_parse_data(wolf_context_t *context)
     context->wins = (sfVector2i){0, 0};
 }
 
-int create_context(wolf_context_t **context, const char *config_file)
+int create_context(bst_context_t **context, const char *config_file)
 {
     if (!context || !config_file)
         return ERROR;
-    *context = malloc(sizeof(wolf_context_t));
+    *context = malloc(sizeof(bst_context_t));
     if (!(*context))
         return ERROR;
     init_post_parse_data(*context);

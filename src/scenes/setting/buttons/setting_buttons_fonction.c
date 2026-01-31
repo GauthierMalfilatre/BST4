@@ -9,7 +9,7 @@
 #include "scenes.h"
 #include "sound.h"
 
-void button_fonctions_setting(wolf_context_t *window)
+void button_fonctions_setting(bst_context_t *window)
 {
     for (int i = B_FULLSCREEN; i < nb_buttons_count; i++) {
         if (window->setting->buttons[i].is_select == 1) {
@@ -22,13 +22,13 @@ void button_fonctions_setting(wolf_context_t *window)
     }
 }
 
-void null_fonc(wolf_context_t *window)
+void null_fonc(bst_context_t *window)
 {
     (void)window;
     return;
 }
 
-void fullscreen(wolf_context_t *window)
+void fullscreen(bst_context_t *window)
 {
     char buffer[32];
 
@@ -39,12 +39,12 @@ void fullscreen(wolf_context_t *window)
     sfText_setString(window->setting->buttons[B_FULLSCREEN].text, buffer);
 }
 
-void back(wolf_context_t *window)
+void back(bst_context_t *window)
 {
     change_scene(MENU_SCENE, window);
 }
 
-static void save_settings(wolf_context_t *window)
+static void save_settings(bst_context_t *window)
 {
     FILE *fd = fopen(SETTING_PATH, "r+");
 
@@ -59,7 +59,7 @@ static void save_settings(wolf_context_t *window)
     fclose(fd);
 }
 
-static void set_sound(wolf_context_t *window)
+static void set_sound(bst_context_t *window)
 {
     window->w_setting[W_SOUND] = window->setting->setting[SETTING_SOUND];
     window->w_setting[W_MUSIC] = window->setting->setting[SETTING_MUSIC];
@@ -69,7 +69,7 @@ static void set_sound(wolf_context_t *window)
         window->setting->setting[SETTING_SENSIBILITE];
 }
 
-static unsigned int get_width_screen(wolf_context_t *window,
+static unsigned int get_width_screen(bst_context_t *window,
     unsigned int new_res)
 {
     float ratio = 1920.f / 1080.f;
@@ -78,7 +78,7 @@ static unsigned int get_width_screen(wolf_context_t *window,
     return (unsigned int)(new_res * ratio);
 }
 
-void apply(wolf_context_t *window)
+void apply(bst_context_t *window)
 {
     char reset_window = 0;
     unsigned int new_resolution = window->setting->setting[SETTING_RESOLUTION];

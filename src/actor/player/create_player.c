@@ -6,7 +6,6 @@
 */
 #include "wolf.h"
 #include "math.h"
-#include <SDL.h>
 
 static int create_view_param(view_param_t *param, const int i, sfVideoMode v)
 {
@@ -39,6 +38,8 @@ static int create_buffer(sfUint8 **framebuffer, double **zbuffer,
 
 static void init_random_stuff(player_t *player)
 {
+    player->dict = (dict_t *) 0;
+    player->buff = (buff_t *) 0;
     player->voicelines = (voicelines_t){0, 0, 0, 0, 0, 0, 0, 0};
     player->kd = (sfVector2i){0, 0};
     player->cooldowns = (cooldowns_t){0.f, 0.f, 0.f, 0.f};
@@ -51,6 +52,7 @@ static void init_random_stuff(player_t *player)
     player->delta_t = 0.f;
     player->hitbox_radius = 20;
     player->time = &player_timer;
+    player->is_bot = sfFalse;
     player->equipe = 0;
     player->score = 0;
     reinit_bleeding(&player->bleeding);
@@ -87,10 +89,10 @@ static int create_draw_utils(draw_utils_t **draw_utils, view_param_t param)
 static void init_game_data(player_t *player)
 {
     player->infos = (game_meta_t) {.ammo = 100, .atk = PLAYER_BASE_ATK,
-        .life = 100, .rdi = IDLING};
+        .life = 100, .rdi = IDLING, .spd = 1.f, .atkspd = 100.f, .maxhp = 100};
 }
 
-int set_sound_attenuation(voicelines_t voices, wolf_context_t *context)
+int set_sound_attenuation(voicelines_t voices, bst_context_t *context)
 {
     unsigned int volume = context->w_setting[W_SOUND];
 
@@ -105,7 +107,7 @@ int set_sound_attenuation(voicelines_t voices, wolf_context_t *context)
     return OK;
 }
 
-int init_player_voicelines(player_t *player, wolf_context_t *context)
+int init_player_voicelines(player_t *player, bst_context_t *context)
 {
     player->voicelines.death =
         sfSound_copy(player->character->voicelines.death);

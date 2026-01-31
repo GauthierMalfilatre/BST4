@@ -31,7 +31,7 @@ static int project_bullet_on_screen(player_t *player, bullet_t *target,
     return 1;
 }
 
-void draw_bullets(wolf_context_t *context, player_t *player)
+void draw_bullets(bst_context_t *context, player_t *player)
 {
     int x_out;
     double depth_out;

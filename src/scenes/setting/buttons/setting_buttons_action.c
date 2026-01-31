@@ -35,7 +35,7 @@ static void check_presse_buttons(setting_t *setting)
     }
 }
 
-static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
+static void check_hover_buttons(bst_context_t *window, sfVector2f mouse_pos)
 {
     button_t *btn;
     char hovered;
@@ -52,7 +52,7 @@ static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
     }
 }
 
-void setting_handle_mouse(wolf_context_t *window)
+void setting_handle_mouse(bst_context_t *window)
 {
     if (window->evt.type == sfEvtMouseMoved) {
         window->setting->mouse_pos =

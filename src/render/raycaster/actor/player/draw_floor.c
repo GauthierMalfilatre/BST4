@@ -64,7 +64,7 @@ static void render_floor_line(floor_ctx_t *ctx, int y, player_t *player)
     draw_floor_pixels(ctx, &step, y);
 }
 
-void render_floor(player_t *player, sfVector2i screen, wolf_context_t *ctx)
+void render_floor(player_t *player, sfVector2i screen, bst_context_t *ctx)
 {
     sfImage *img;
     tex_info_t tex;

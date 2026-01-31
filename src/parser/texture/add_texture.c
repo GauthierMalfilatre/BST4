@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-int add_texture_p(char **warray, wolf_context_t *context)
+int add_texture_p(char **warray, bst_context_t *context)
 {
     if (my_len_word_array(warray) < 4) {
         return ERROR;

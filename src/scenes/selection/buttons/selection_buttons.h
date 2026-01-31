@@ -19,7 +19,7 @@
 
     #define B_COLOR ((sfColor){139, 158, 183, 100})
 
-typedef void (*ptr_fonc_t)(wolf_context_t *, int);
+typedef void (*ptr_fonc_t)(bst_context_t *, int);
 
 // Button structure
 typedef struct button_s {
@@ -30,16 +30,16 @@ typedef struct button_s {
     char is_hovered;
     char is_pressed;
     char is_select;
-    void (*button_fonc)(wolf_context_t *, int i);
+    void (*button_fonc)(bst_context_t *, int i);
 } button_t;
 
 // Button functions
-void null_fonc(wolf_context_t *window, int i);
-void back(wolf_context_t *window, int i);
-void start_game(wolf_context_t *window, int i);
-void map_right(wolf_context_t *window, int i);
-void map_left(wolf_context_t *window, int i);
-void rumble(wolf_context_t *window, int i);
+void null_fonc(bst_context_t *window, int i);
+void back(bst_context_t *window, int i);
+void start_game(bst_context_t *window, int i);
+void map_right(bst_context_t *window, int i);
+void map_left(bst_context_t *window, int i);
+void rumble(bst_context_t *window, int i);
 
 // Function pointer array and button text
 static const ptr_fonc_t b_fonctions[] =

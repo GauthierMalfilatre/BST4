@@ -7,7 +7,7 @@
 #include "wolf.h"
 #include <string.h>
 
-int add_hp_p(char **warray, wolf_context_t *context)
+int add_hp_p(char **warray, bst_context_t *context)
 {
     if (my_len_word_array(warray) < 3 || !context->n_map) {
         return ERROR;

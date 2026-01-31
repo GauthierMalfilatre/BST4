@@ -63,7 +63,7 @@ static button_t create_button(sfVector2f position, sfVector2f size,
     return btn;
 }
 
-void init_setting_buttons(wolf_context_t *window)
+void init_setting_buttons(bst_context_t *window)
 {
     unsigned int pos_width = window->view->win_size.x / 2;
     unsigned int pos_height = window->view->win_size.y / 2;
@@ -107,7 +107,7 @@ static button_t create_setting_button(sfVector2f size, sfVector2f position,
     return button;
 }
 
-void create_bottom_buttons(wolf_context_t *window)
+void create_bottom_buttons(bst_context_t *window)
 {
     sfVector2f size = {window->view->win_size.x * 0.07f,
         window->view->win_size.y * 0.07f};

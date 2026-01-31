@@ -11,7 +11,7 @@
     #include <pthread.h>
 
 typedef struct {
-    wolf_context_t *context;
+    bst_context_t *context;
     player_t *player;
 } thread_args_t;
 

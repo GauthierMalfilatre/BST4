@@ -7,7 +7,7 @@
 */
 #include "wolf.h"
 
-int skill_dash(wolf_context_t *context, player_t *self)
+int skill_dash(bst_context_t *context, player_t *self)
 {
     sfVector2f target_pos;
     sfVector2f base_pos;
@@ -25,7 +25,7 @@ int skill_dash(wolf_context_t *context, player_t *self)
     return OK;
 }
 
-int skill_dash_end(wolf_context_t *context, player_t *self, sfBool force)
+int skill_dash_end(bst_context_t *context, player_t *self, sfBool force)
 {
     (void) context;
     (void) force;

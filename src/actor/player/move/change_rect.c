@@ -6,7 +6,7 @@
 */
 #include "wolf.h"
 
-static int change_self_rect(player_t *player, int left)
+static inline int change_self_rect(player_t *player, int left)
 {
     player->utils->self_rect.left = left;
     return 0;

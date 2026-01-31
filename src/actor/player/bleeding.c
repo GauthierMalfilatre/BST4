@@ -9,7 +9,7 @@
 
 // Warning ! Decrease bleeding target_lifr when taking damage to
 //    annulation of bleeding when taking others damages
-static void global_bleeding(player_t *self, wolf_context_t *context)
+static void global_bleeding(player_t *self, bst_context_t *context)
 {
     if (!self->bleeding.dps) {
         return;
@@ -29,7 +29,7 @@ static void global_bleeding(player_t *self, wolf_context_t *context)
     }
 }
 
-static void global_healing(player_t *self, wolf_context_t *context)
+static void global_healing(player_t *self, bst_context_t *context)
 {
     (void) context;
     if (!self->healing.hps) {
@@ -54,8 +54,8 @@ void add_healing_to_player(player_t *player, const float hps,
     player->healing.time_elapsed = 0.f;
     player->healing.target_life = player->infos.life + hps *
         duration / 1000.f;
-    if (player->healing.target_life > player->character->maxhp) {
-        player->healing.target_life = player->character->maxhp;
+    if (player->healing.target_life > player->infos.maxhp) {
+        player->healing.target_life = player->infos.maxhp;
     }
 }
 
@@ -67,7 +67,7 @@ void reinit_healing(healing_t *healing)
     healing->time_elapsed = 0.f;
     healing->hps = 0.f;
 }
-
+ 
 void add_bleeding_to_player(player_t *player, const float dps,
     const float duration)
 {
@@ -94,7 +94,7 @@ void reinit_bleeding(bleeding_t *bleeding)
     bleeding->dps = 0.f;
 }
 
-void player_resolve_bleeding(player_t *player, wolf_context_t *context)
+void player_resolve_bleeding(player_t *player, bst_context_t *context)
 {
     global_healing(player, context);
     global_bleeding(player, context);

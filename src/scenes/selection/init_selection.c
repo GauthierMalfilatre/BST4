@@ -7,7 +7,7 @@
 
 #include "selection.h"
 
-void init_selection_background(wolf_context_t *window)
+void init_selection_background(bst_context_t *window)
 {
     sfVector2u tex_size;
     float scale_x;
@@ -25,7 +25,7 @@ void init_selection_background(wolf_context_t *window)
         (sfVector2f){scale_x, scale_y});
 }
 
-void init_selection_text(wolf_context_t *window)
+void init_selection_text(bst_context_t *window)
 {
     sfFloatRect bounds;
     sfText *text;
@@ -46,7 +46,7 @@ void init_selection_text(wolf_context_t *window)
     window->selection->text_selection = text;
 }
 
-static void init_text_selection_map(wolf_context_t *window, sfVector2f size,
+static void init_text_selection_map(bst_context_t *window, sfVector2f size,
     sfVector2f position)
 {
     sfFloatRect bounds;
@@ -67,7 +67,7 @@ static void init_text_selection_map(wolf_context_t *window, sfVector2f size,
         (sfVector2f){position.x + size.x / 2.0f, position.y + size.y / 2.0f});
 }
 
-void init_selection_map(wolf_context_t *window)
+void init_selection_map(bst_context_t *window)
 {
     sfVector2u win_size = window->view->win_size;
     sfVector2f size = {win_size.x * 0.25f, win_size.y * 0.10f};

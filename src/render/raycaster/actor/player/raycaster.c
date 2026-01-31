@@ -8,7 +8,7 @@
 #include "../../../render.h"
 #include "../../../../textures/textures.h"
 
-static sfBool is_any_alpha(wolf_context_t *ctx, wall_t wall)
+/*static sfBool is_any_alpha(bst_context_t *ctx, wall_t wall)
 {
     sfImage *img;
     const sfUint8 *pixels;
@@ -26,9 +26,9 @@ static sfBool is_any_alpha(wolf_context_t *ctx, wall_t wall)
         }
     }
     return sfFalse;
-}
+}*/
 
-static void rec_alpha(wolf_context_t *ray, player_t *player,
+static void rec_alpha(bst_context_t *ray, player_t *player,
     float angle, raycaster_param_t p)
 {
     if (ray->cmap->walls[p.i].alpha != 1.f) {
@@ -38,7 +38,7 @@ static void rec_alpha(wolf_context_t *ray, player_t *player,
     }
 }
 
-void cast_ray(wolf_context_t *ray, player_t *player, float angle,
+void cast_ray(bst_context_t *ray, player_t *player, float angle,
     raycaster_param_t p)
 {
     sfVector2f collision = {0.0 / 0.0, 0.0 / 0.0};
@@ -61,7 +61,7 @@ void cast_ray(wolf_context_t *ray, player_t *player, float angle,
     return;
 }
 
-void raycaster(wolf_context_t *context, player_t *player)
+void raycaster(bst_context_t *context, player_t *player)
 {
     float screen_center = player->param.size.x / 2.0f;
     float ray_angle = 0;

@@ -7,7 +7,7 @@
 
 #include "start_menu.h"
 
-void draw_start_buttons(wolf_context_t *window)
+void draw_start_buttons(bst_context_t *window)
 {
     for (int i = 0; i < nb_buttons_count; i++) {
         if (window->menu->buttons[i].shape != NULL) {

@@ -20,7 +20,7 @@ static void resolve_axis(float *speedx, float *speedy, float *speedu)
 }
 
 static void apply_axis(player_t *player, sfVector2f speedxy,
-    float speedu, wolf_context_t *context)
+    float speedu, bst_context_t *context)
 {
     float speedx = speedxy.x;
     float speedy = speedxy.y;
@@ -36,7 +36,7 @@ static void apply_axis(player_t *player, sfVector2f speedxy,
 }
 
 static void resolve_buttons(player_t *player, int gamenum,
-    wolf_context_t *context)
+    bst_context_t *context)
 {
     int duck = sfJoystick_getAxisPosition(gamenum, sfJoystickZ);
 
@@ -47,8 +47,9 @@ static void resolve_buttons(player_t *player, int gamenum,
         reload(player);
     }
     if (sfJoystick_isButtonPressed(gamenum, 3)) {
+        if (!player->cooldowns.till_competence)
+            rumble_controller(player);
         player->character->skill(context, player);
-        rumble_controller(player);
     }
     if (sfJoystick_isButtonPressed(gamenum, 1))
         player->infos.rdi = EMOTING;
@@ -68,10 +69,10 @@ static void resolve_rdi(player_t *player, float speedx, float speedy)
         player->param.fov = DEG_TO_RAD(60);
 }
 
-void player_movement_gamepad(wolf_context_t *context, player_t *player)
+void player_movement_gamepad(bst_context_t *context, player_t *player)
 {
     int gamenum = player->device - 1;
-    float speed = player->delta_t / (3.f * 8.f);
+    float speed = player->delta_t / (3.f * 8.f) * player->infos.spd;
     float speedy = sfJoystick_getAxisPosition(gamenum, sfJoystickY) / 10.f;
     float speedx = sfJoystick_getAxisPosition(gamenum, sfJoystickX) / 10.f;
     float speedu = sfJoystick_getAxisPosition(gamenum, sfJoystickU) / 10.f;

@@ -7,7 +7,7 @@
 
 #include "setting_buttons.h"
 
-void draw_buttons_setting(wolf_context_t *window)
+void draw_buttons_setting(bst_context_t *window)
 {
     for (int i = 0; i < nb_buttons_count; i++) {
         if (window->setting->buttons[i].shape != NULL) {

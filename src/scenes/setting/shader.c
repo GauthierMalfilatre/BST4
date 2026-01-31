@@ -7,7 +7,7 @@
 
 #include "setting.h"
 
-void setup_shader(wolf_context_t *window)
+void setup_shader(bst_context_t *window)
 {
     float time =
     sfTime_asSeconds(sfClock_getElapsedTime(window->setting->clock));

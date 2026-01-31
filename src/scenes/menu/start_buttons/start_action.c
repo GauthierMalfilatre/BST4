@@ -34,7 +34,7 @@ static void check_presse_buttons(menu_t *menu)
     }
 }
 
-static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
+static void check_hover_buttons(bst_context_t *window, sfVector2f mouse_pos)
 {
     button_t *btn;
     char change_cursor = 0;
@@ -58,7 +58,7 @@ static void check_hover_buttons(wolf_context_t *window, sfVector2f mouse_pos)
         window->view->cursor_hand : window->view->cursor_arrow);
 }
 
-void start_menu_handle_mouse(wolf_context_t *window)
+void start_menu_handle_mouse(bst_context_t *window)
 {
     if (window->evt.type == sfEvtMouseMoved) {
         check_hover_buttons(window,
